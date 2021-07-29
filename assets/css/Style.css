@@ -1,15 +1,28 @@
 * {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
   }
+  
+  body {
+    background-color: #2B2D42;
+  }
+  
+  .container {
+    background-color: #fff;
+  }
+  
+  /* Début section header */
   header {
     margin: 0;
     background-color: #e12835;
-    background-image: radial-gradient(#e12835 20%, #be2633 50%, rgba(0, 0, 0, .5) 100%);
+    background-image: radial-gradient(#e12835 20%, #be2633 50%, rgba(0, 0, 0, 0.5) 100%);
     background-size: 120%;
     background-position: center;
     font-family: 'Barlow Condensed', sans-serif;
-    animation: tighten-vinette ease-out 1800ms forwards;
+    -webkit-animation: tighten-vinette ease-out 1800ms forwards;
+            animation: tighten-vinette ease-out 1800ms forwards;
   }
+  
   .images {
     pointer-events: none;
     height: 30vh;
@@ -23,29 +36,41 @@
     background-size: cover;
     background-position: center;
     background-repeat: none;
-    background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/Outlander.jpg');
+    /* background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/Outlander.jpg'); */
   }
+  
   .wrapper {
     height: 30vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
+  
   .logo {
     cursor: pointer;
     text-align: center;
   }
+  
   .logo:hover .restart {
     opacity: 0.8;
   }
+  
   .restart {
     color: #fff;
     margin-top: 20px;
     font-size: 1.5rem;
     text-transform: uppercase;
     letter-spacing: -0.08rem;
+    -webkit-transition: opacity 150ms linear;
     transition: opacity 150ms linear;
   }
+  
   .marvel, .studios {
     position: relative;
     color: #fff;
@@ -56,28 +81,34 @@
     padding: 0 0.4rem;
     display: inline-block;
   }
+  
   .studios {
     font-weight: 500;
     letter-spacing: -0.3rem;
-    transform: translateX(-95px);
+    -webkit-transform: translateX(-95px);
+            transform: translateX(-95px);
   }
+  
   .marvel {
     z-index: 10;
     font-weight: 800;
-    transform: translateX(95px);
+    -webkit-transform: translateX(95px);
+            transform: translateX(95px);
   }
+  
   .marvel:before {
     z-index: -10;
     content: '';
     display: block;
     background-color: #e12835;
-    border: solid rgba(255, 255, 255, .2) 1px;
+    border: solid rgba(255, 255, 255, 0.2) 1px;
     height: 100%;
     width: 100%;
     position: absolute;
     top: 0;
     left: 0;
   }
+  
   .studios:after, .studios:before {
     content: '';
     display: block;
@@ -88,118 +119,210 @@
     left: 0.4rem;
     right: 0.4rem;
   }
+  
   .studios:before {
     top: 0;
   }
+  
   .studios:after {
     bottom: 0;
   }
+  
   .wrapper.run-animation {
-    animation: shrink ease-out 4800ms forwards 600ms;
+    -webkit-animation: shrink ease-out 4800ms forwards 600ms;
+            animation: shrink ease-out 4800ms forwards 600ms;
   }
+  
   .wrapper.run-animation .marvel {
-    transform: translateX(95px);
-    animation: slide-out-X 750ms ease forwards;
+    -webkit-transform: translateX(95px);
+            transform: translateX(95px);
+    -webkit-animation: slide-out-X 750ms ease forwards;
+            animation: slide-out-X 750ms ease forwards;
   }
+  
   .wrapper.run-animation .studios {
-    transform: translateX(-95px);
+    -webkit-transform: translateX(-95px);
+            transform: translateX(-95px);
     color: transparent;
-    animation: slide-out-X 750ms ease forwards, show-text 300ms linear forwards 1500ms;
+    -webkit-animation: slide-out-X 750ms ease forwards, show-text 300ms linear forwards 1500ms;
+            animation: slide-out-X 750ms ease forwards, show-text 300ms linear forwards 1500ms;
   }
+  
   .wrapper.run-animation .studios:before {
-    transform: translateY(2.9rem);
-    animation: slide-out-Y 300ms ease forwards 750ms;
+    -webkit-transform: translateY(2.9rem);
+            transform: translateY(2.9rem);
+    -webkit-animation: slide-out-Y 300ms ease forwards 750ms;
+            animation: slide-out-Y 300ms ease forwards 750ms;
   }
+  
   .wrapper.run-animation .studios:after {
-    transform: translateY(-2.9rem);
-    animation: slide-out-Y 300ms ease forwards 750ms;
+    -webkit-transform: translateY(-2.9rem);
+            transform: translateY(-2.9rem);
+    -webkit-animation: slide-out-Y 300ms ease forwards 750ms;
+            animation: slide-out-Y 300ms ease forwards 750ms;
   }
+  
   .wrapper.run-animation .restart {
     opacity: 0;
-    animation: fade-down 1200ms ease 3600ms forwards;
+    -webkit-animation: fade-down 1200ms ease 3600ms forwards;
+            animation: fade-down 1200ms ease 3600ms forwards;
   }
+  
   .wrapper.run-animation ~ .images {
-    animation: flicker-images 1500ms 2 steps(1, end), fade-out 4500ms forwards;
+    -webkit-animation: flicker-images 1500ms 2 steps(1, end), fade-out 4500ms forwards;
+            animation: flicker-images 1500ms 2 steps(1, end), fade-out 4500ms forwards;
   }
+  
+  @-webkit-keyframes slide-out-X {
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+  }
+  
   @keyframes slide-out-X {
     100% {
-      transform: translateX(0);
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
     }
   }
+  
+  @-webkit-keyframes slide-out-Y {
+    100% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+    }
+  }
+  
   @keyframes slide-out-Y {
     100% {
-      transform: translateY(0);
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
     }
   }
+  
+  @-webkit-keyframes show-text {
+    100% {
+      color: #fff;
+    }
+  }
+  
   @keyframes show-text {
     100% {
       color: #fff;
     }
   }
-  @keyframes shrink {
+  
+  @-webkit-keyframes shrink {
     100% {
-      transform: scale(0.8);
+      -webkit-transform: scale(0.8);
+              transform: scale(0.8);
     }
   }
+  
+  @keyframes shrink {
+    100% {
+      -webkit-transform: scale(0.8);
+              transform: scale(0.8);
+    }
+  }
+  
+  @-webkit-keyframes tighten-vinette {
+    100% {
+      background-size: 120%;
+    }
+  }
+  
   @keyframes tighten-vinette {
     100% {
       background-size: 120%;
     }
   }
-  @keyframes fade-down {
+  
+  @-webkit-keyframes fade-down {
     0% {
-      transform: translateY(-2rem);
+      -webkit-transform: translateY(-2rem);
+              transform: translateY(-2rem);
       opacity: 0;
     }
     100% {
-      transform: translateY(0);
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
       opacity: 0.5;
     }
   }
+  
+  @keyframes fade-down {
+    0% {
+      -webkit-transform: translateY(-2rem);
+              transform: translateY(-2rem);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+      opacity: 0.5;
+    }
+  }
+  
+  @-webkit-keyframes fade-out {
+    100% {
+      opacity: 0;
+    }
+  }
+  
   @keyframes fade-out {
     100% {
       opacity: 0;
     }
   }
-  @keyframes flicker-images {
-    0% {
-      background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/Desperate.jpg');
-      background-position: top;
-    }
-    10% {
-      background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/BB.jpg');
-    }
-    20% {
-      background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/Simpsons.jpg');
-      background-position:center;
-    }
-    30% {
-      background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/TWD.jpg');
-      background-position:top;
-    }
-    40% {
-      background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/Bridgerton.jpg');
-    }
-    50% {
-      background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/Californication.jpg');
-      background-position:center;
-    }
-    60% {
-      background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/GOT.jpg');
-      background-position:center;
-    }
-    70% {
-      background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/TBBT.jpg');
-      background-position:top;
-    }
-    80% {
-      background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/Viking.jpg');
-    }
-    90% {
-      background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/Narcos.jpg');
-    }
-    100% {
-      background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/You.jpg');
-    }
+  
+  /* @keyframes flicker-images {
+      0% {
+        background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/Desperate.jpg');
+        background-position: top;
+      }
+      10% {
+        background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/BB.jpg');
+      }
+      20% {
+        background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/Simpsons.jpg');
+        background-position:center;
+      }
+      30% {
+        background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/TWD.jpg');
+        background-position:top;
+      }
+      40% {
+        background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/Bridgerton.jpg');
+      }
+      50% {
+        background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/Californication.jpg');
+        background-position:center;
+      }
+      60% {
+        background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/GOT.jpg');
+        background-position:center;
+      }
+      70% {
+        background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/TBBT.jpg');
+        background-position:top;
+      }
+      80% {
+        background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/Viking.jpg');
+      }
+      90% {
+        background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/Narcos.jpg');
+      }
+      100% {
+        background-image: url('C:/Users/Gmasa/Documents/Projet TP/assets/img/You.jpg');
+      }
+    } */
+  
+    /* Début section header */
+  
+  .pictureSize {
+    height: 50vh;
+    max-width: 18rem;
   }
   

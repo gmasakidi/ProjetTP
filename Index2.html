@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous" />
+    <link rel="stylesheet" href="assets/css/style2.css">
+    <title>Series Trakr</title>
+</head>
+
+<body>
+    <!--Début de la navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Series Trackr</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Séries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Actualité</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Ex: Glee" aria-label="Search">
+                    <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!--Fin de la navbar-->
+    <!--Début du header-->
+    <header class="d-flex align-items-center">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-6 d-flex justify-content-center">
+                    <h1 class="display-1 text-white fw-bold w-50 headerTitle mb-4" id="headerSubtitle">Series Trackr
+                    </h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <p class="fs-2 text-white text-center fw-bold w-75 headerTitle">Votre compagnon pour suivre vos
+                        séries préférées !</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--Fin du header-->
+    <div class="container mb-5 text-white" id="overlaySection">
+        <div class="row d-flex align-items-center text-center mt-5 boxShadow">
+            <div class="col-12 col-sm-4 text-center">
+                <div class="icon display-6 mb-2">
+                    <i class="bi bi-film"></i>
+                </div>
+                <div class="text mt-2">
+                    <p class="fw-bold fs-3">Séries</p>
+                    <p>Trouvez vos séries favorites</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4 mt-4 mt-sm-0">
+                <div class="icon display-6 mb-2">
+                    <i class="bi bi-chat-left-quote"></i>
+                </div>
+                <div class="text mt-2">
+                    <p class="fw-bold fs-3">Discussion</p>
+                    <p>Partagez vos avis</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4 mt-4 mt-sm-0">
+                <div class="icon display-6 mb-2">
+                    <i class="bi bi-newspaper"></i>
+                </div>
+                <div class="text mt-2">
+                    <p class="fw-bold fs-3">News</p>
+                    <p>Suivez l'actualité de vos séries</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-white">
+                <h2 class="fs-3 mt-5 mb-4 fw-bold text-center text-uppercase textShadow">Aussi simple que ça</h2>
+                <p class="fw-bold text-center">Permettez à Series Trackr de devenir votre guide</p>
+                <p class="text-center">
+                    Nous vous proposons une solution pour faire le point sur les séries que vous regardez. Selectionnez
+                    simplement les séries
+                    que vous avez visionné et échangez vos avis sur les épisodes que vous aimez, nous nous chargons du
+                    reste.
+                </p>
+            </div>
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto mt-4 mb-3">
+            <button class="btn btn-secondary" type="button">COMMENCER</button>
+        </div>
+    </div>
+    <div class="sectionBorder"></div>
+    <div id="parallax"></div>
+    <div class="sectionBorder"></div>
+    <div class="container-fluid">
+        <div class="row text-center mt-5 mb-3 boxShadow overflow-hidden mb-5">
+            <div class="col-12 col-md-4 d-flex align-items-center justify-content-center" id="firstCut">
+                <div class="icon mb-2">
+                    <i class="display-2 bi bi-tv"></i>
+                    <p class="text-white mt-2">Je regarde</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 d-flex align-items-center justify-content-center" id="secondCut">
+                <div class="icon mb-2">
+                    <i class="display-2 bi bi-check2-circle"></i>
+                    <p class="text-white mt-2">Je check</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 d-flex align-items-center justify-content-center" id="thirdCut">
+                <div class="icon mb-2">
+                    <i class="display-2 bi bi-chat-dots"></i>
+                    <p class="text-white mt-2">Je discute</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Footer>
+        <div class="container-fluid">
+            <div class="row text-white text-center d-flex justify-content-center align-items-center socialMediaBox">
+                <div class="col-12 col-sm-6">
+                    <p class="fs-6 mt-3">Suivez-nous sur les réseaux sociaux !</p>
+                </div>
+                <div class="col-12 col-sm-6 d-flex justify-content-center">
+                    <div class="footerIcons fs-4">
+                        <a href="https://fr-fr.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/?lang=fr"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/?hl=fr"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center d-flex justify-content-center footerContent mt-5">
+                <div class="col-12 col-sm-6 col-md-3 text-white">
+                    <p class="display-5 fw-bold headerTitle mb-4 d-flex justify-content-center">Series <br />Trackr</p>
+                    <p class="fw-light reservedText">
+                        ©2021 Series Trackr <br>
+                        Tous droits réservés.
+                    </p>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3 text-start footerTextColor">
+                    <h3 class="h5 text-uppercase mb-4 underline left">Liens utiles</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none">Mon compte</a></li>
+                        <li><a href="#" class="text-decoration-none">Qui sommes-nous ?</a></li>
+                        <li><a href="#" class="text-decoration-none">Mentions légales</a></li>
+                        <li><a href="#" class="text-decoration-none">Politiques de cookies</a></li>
+                        <li><a href="#" class="text-decoration-none">Aide</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3 text-start footerTextColor">
+                    <h3 class="h5 text-uppercase mb-4 underline left">Contact</h3>
+                    <ul class="list-unstyled">
+                        <li><i class="me-3 bi bi-house-door-fill"></i>Noyon, Oise 60400, France</li>
+                        <li><i class="me-3 bi bi-envelope-fill"></i>Series-trackr@gmail.com</li>
+                        <li><i class="me-3 bi bi-telephone-fill"></i>+33 1 44 44 25 99</li>
+                        <li><i class="me-3 bi bi-printer-fill"></i>+33 1 44 44 25 98</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3 text-start mb-3 footerTextColor">
+                    <h3 class="h5 text-uppercase mb-4 underline left">Newsletter</h3>
+                    <form action="#" method="POST">
+                        <div class="d-block">
+                            <label for="mail" class="mb-3">Souscrivez à notre newsletter pour être tenu au courant des
+                                dernières actualités sur vos programmes préférés : </label>
+                            <input type="email" name="mail" id="mail" placeholder="Exemple@gmail.com" class="input-group mb-3" />
+                            <input type="submit" class="btn btn-outline-secondary btn-sm" value="Je m'abonne !"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </Footer>
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/Anim.js"></script>
+</body>
+
+</html>

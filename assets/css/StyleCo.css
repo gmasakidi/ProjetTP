@@ -1,0 +1,68 @@
+html, body {
+    width: 100%;
+    height:100%;
+    background-image: radial-gradient(circle at center center, rgb(77, 92, 117), rgb(15, 16, 43));
+  }
+
+  nav {
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter        : blur(15px);
+    background-color       : rgba(0, 0, 0, 0.25);
+    position               : relative;
+  }
+  .firstForm {
+    /* max-width : 100%; */
+    -webkit-backdrop-filter: blur(3px); /* assure la compatibilité avec safari */
+    backdrop-filter: blur(3px);
+    background-color:rgba(226, 224, 224, 0.25);
+    border-radius: 7px;
+    margin-bottom : 100px;
+    margin-top : 100px;
+    -webkit-box-shadow: 0px 0px 30px 5px rgba(66, 67, 82, 0.5); 
+    box-shadow: 0px 0px 30px 5px rgba(66, 67, 82, 0.5);
+}
+/* @media (max-width : 1024px) {
+  .firstForm {
+    width : 85%;
+  }
+} */
+
+/* START FOOTER CSS */
+footer {
+  height: 30vh;
+  background-color : #242638;
+  font-size : 0.8rem;
+}
+.footerTextColor {
+  color :#7f7f84;
+}
+.reservedText {
+  font-size : 0.7rem;
+}
+
+.socialMediaBox {
+  padding: 1px;
+  background-color : #EF233C;
+}
+
+.footerContent {
+  background-color : #242638;
+}
+
+.headerTitle {
+  text-shadow: 0px 5px 10px #000000; 
+  line-height: 60%;
+}
+
+.underline {
+  background-image: linear-gradient(#EF233C, #EF233C);
+  background-position: bottom center; /*Adjust the background-position to move the line*/
+  background-size: 15% 2px; /*Adjust the background size to control length and height*/
+  background-repeat: no-repeat;
+  padding-bottom: 10px; /* this can also control the position */
+}
+
+.left {
+  background-position: bottom left;
+}
+/* END FOOTER CSS */
