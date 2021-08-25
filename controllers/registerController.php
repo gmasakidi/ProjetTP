@@ -22,18 +22,18 @@ if (count($_POST) > 0) {
         $formErrors['username'] = EMPTY_USERNAME;
     }
 
-    if (!empty($_POST['email'])) {
+    if (!empty($_POST['mail'])) {
         /**
          * Le filter_var() - https://www.php.net/manual/fr/function.filter-var.php - permet de remplacer une regex trop complexe. Ici, l'adresse mail par exemple.
-         * Le filtre 'FILTER_VALIDATE_EMAIL' est une constante. Les différents filtres existants sont dispos sur le site php.net : https://www.php.net/manual/fr/filter.filters.validate.php
+         * Le filtre 'FILTER_VALIDATE_mail' est une constante. Les différents filtres existants sont dispos sur le site php.net : https://www.php.net/manual/fr/filter.filters.validate.php
          */
-        if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-            $users->email = htmlspecialchars($_POST['email']);
+        if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
+            $users->mail = htmlspecialchars($_POST['mail']);
         } else {
-            $formErrors['email'] = INVALID_MAIL;
+            $formErrors['mail'] = INVALID_MAIL;
         }
     } else {
-        $formErrors['email'] = EMPTY_MAIL;
+        $formErrors['mail'] = EMPTY_MAIL;
     }
 
     if (!empty($_POST['birthdate'])) {

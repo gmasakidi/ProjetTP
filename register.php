@@ -34,9 +34,9 @@ require_once 'includes/header.php';
                     <small class="invalid-feedback"><?= @$formErrors['username'] ?></small>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control inputNoTopRadius <?= !isset($formErrors['email']) ?: 'is-invalid' ?>" id="email" name="email" placeholder="moi@exemple.fr" value="<?= @$_POST['email'] ?>" />
-                    <label for="email">Adresse mail</label>
-                    <small class="invalid-feedback"><?= @$formErrors['email'] ?></small>
+                    <input type="mail" class="form-control inputNoTopRadius <?= !isset($formErrors['mail']) ?: 'is-invalid' ?>" id="mail" name="mail" placeholder="moi@exemple.fr" value="<?= @$_POST['mail'] ?>" />
+                    <label for="mail">Adresse mail</label>
+                    <small class="invalid-feedback"><?= @$formErrors['mail'] ?></small>
                 </div>
 
                 <div class="form-floating mb-3">

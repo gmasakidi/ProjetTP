@@ -9,7 +9,7 @@ class users extends database {
     // Création des attributs qui permettront de stocker les données, on leur donne une valeur par défaut
     public $id = 0;
     public $username = '';
-    public $email = '';
+    public $mail = '';
     public $password = '';
     public $birthdate = '01/01/1940';
     public $photo = '';
@@ -28,14 +28,14 @@ class users extends database {
 
     public function addUser() {
         //Ici les ":" indiquent que ce sont des marqueurs nominatifs, ces valeurs sont vides, on prépare l'entrée de future données,
-        $query = 'INSERT INTO 5fe2__users (username, email, birthdate, password)
-        VALUES (:username, :email, :birthdate, :password)';
+        $query = 'INSERT INTO 5fe2__users (username, mail, birthdate, password)
+        VALUES (:username, :mail, :birthdate, :password)';
         //On utilise prepare lorsque l'on a des marqueurs nominatifs, mais elle n'execute pas la requete directement contrairement à query
         $queryExecute = $this->db->prepare($query);
         //Le bindvalue va attribuer les données aux marqueurs nominatifs
         //Le PARAM_STR va dire à la base de donnée de changer la valeur stockée en string. C'est une sécurité pour empêcher les attaques aux requêtes SQL.
         $queryExecute->bindValue(':username', $this->username, PDO::PARAM_STR);
-        $queryExecute->bindValue(':email', $this->email, PDO::PARAM_STR);
+        $queryExecute->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $queryExecute->bindValue(':birthdate', $this->birthdate, PDO::PARAM_STR);
         $queryExecute->bindValue(':password', $this->password, PDO::PARAM_STR);
         //L'execute va éxécuter la requête préparée avec les valeurs données dans le bindvalue qui elles seront tirées de nos inputs
@@ -44,7 +44,7 @@ class users extends database {
     }
 
     public function getUserslist() {
-        $query = 'SELECT id, username, email, DATE_FORMAT(birthdate, "%d/%m/%Y") AS birthdate, password
+        $query = 'SELECT id, username, mail, DATE_FORMAT(birthdate, "%d/%m/%Y") AS birthdate, password
         FROM 5fe2__users';
         //On lance la méthode query qui contient notre requête qu'on lui donne en paramètre
         $queryExecute = $this->db->query($query);
@@ -57,7 +57,7 @@ class users extends database {
     public function getUserProfile() {
         // Ici les ":" indiquent que ce sont des marqueurs nominatifs, ces valeurs sont vides, on prépare l'entrée de future données, 
         // Le PARAM_STR va dire à la base de donnée de changer la valeur stockée en string. C'est une sécurité pour empêcher les attaques aux requêtes SQL.
-        $query = 'SELECT id, username, email, DATE_FORMAT(birthdate, "%d/%m/%Y") AS birthdate, password
+        $query = 'SELECT id, username, mail, DATE_FORMAT(birthdate, "%d/%m/%Y") AS birthdate, password
         FROM 5fe2__users
         WHERE id = :id'; 
         $queryExecute = $this->db->prepare($query);
@@ -70,11 +70,11 @@ class users extends database {
 
     public function updateUserProfile() {
         $query = 'UPDATE 5fe2__users 
-        SET username = :username, email = :email, birthdate = :birthdate, password = :password
+        SET username = :username, mail = :mail, birthdate = :birthdate, password = :password
         WHERE id=:id'; 
         $queryExecute = $this->db->prepare($query);
         $queryExecute->bindValue(':username', $this->username, PDO::PARAM_STR);
-        $queryExecute->bindValue(':email', $this->email, PDO::PARAM_STR);
+        $queryExecute->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $queryExecute->bindValue(':birthdate', $this->birthdate, PDO::PARAM_STR);
         $queryExecute->bindValue(':phone', $this->phone, PDO::PARAM_STR);
         $queryExecute->bindValue(':password', $this->password, PDO::PARAM_STR);
