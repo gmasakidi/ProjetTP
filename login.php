@@ -31,13 +31,13 @@ require_once 'includes/header.php';
                 <div class="form-floating">
                     <input type="text" class="form-control inputNoBottomRadius <?= !isset($formErrors['username']) ?: 'is-invalid' ?>" id="username" name="username" placeholder="Ex: dracofeu" value="<?= @$_POST['username'] ?>" />
                     <label for="username">Nom d'utilisateur</label>
+                    <small class="invalid-feedback"><?= @$formErrors['username'] ?></small>
                 </div>
                 <div class="form-floating">
                     <input type="password" class="form-control inputNoTopRadius <?= !isset($formErrors['login']) ?: 'is-invalid' ?>" id="password" name="password" placeholder="********" value="<?= @$_POST['password'] ?>" />
                     <label for="password">Mot de passe</label>
+                    <small class="invalid-feedback"><?= @$formErrors['password'] ?></small>
                 </div>
-                <small class="invalid-feedback"><?= @$formErrors['username'] ?></small>
-                <small class="invalid-feedback"><?= @$formErrors['password'] ?></small>
 
                 <div class="checkbox mb-3">
                     <label>

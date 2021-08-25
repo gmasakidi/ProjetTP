@@ -97,7 +97,7 @@ class users extends database {
         FROM 5fe2__users
         WHERE username = :username';
         $queryExecute = $this->db->prepare($query);
-        $queryExecute->bindValue(':username', $this->login, PDO::PARAM_STR);
+        $queryExecute->bindValue(':username', $this->username, PDO::PARAM_STR);
         $queryExecute->execute();
         return $queryExecute->fetch(PDO::FETCH_OBJ);
     }
