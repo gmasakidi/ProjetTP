@@ -1,5 +1,4 @@
 <?php
-
 //Si la session de cet utilisateur existe, alors je le redirige vers la page de connexion (car il a déjà un compte)
 if (isset($_SESSION['username'])) {
     header('location: login.php');
@@ -16,13 +15,13 @@ if (count($_POST) > 0) {
      * le champs est obligatoire.
      * Si le contenu de mon champs respecte ma regex alors je stocke le contenu de mon champs (en le changeant en lettre capitale)
      * dans l'attribut 'username' de ma classe 'users', sinon j'informe l'utilisateur que le pseudo est invalide.
-     * De plus, je vérifie si l'utilisateur existe déjà via ma méthode checkIfUserExists(). S'il existe j'informe l'utilisateur
+     * De plus, je vérifie si l'utilisateur existe déjà via ma méthode checkIfUsernameExists(). S'il existe j'informe l'utilisateur
      * que ce nom d'utilisateur est déjà réservé.
     */
     if (!empty($_POST['username'])) {
         if (preg_match($regex['username'], $_POST['username'])) {
             $users->username = strtoupper($_POST['username']);
-            if ($users->checkIfUserExists() > 0) {
+            if ($users->checkIfUsernameExists() > 0) {
                 $formErrors['username'] = EXISTING_USERNAME;
             }
         } else {

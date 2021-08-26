@@ -1,4 +1,5 @@
 <?php
+
 //Si mon formulaire a été envoyé
 if (count($_POST) > 0) {
     //J'initialise mon tableau qui stockera mes messages d'erreurs
@@ -14,7 +15,7 @@ if (count($_POST) > 0) {
     */
     if (!empty($_POST['username'])) {
         $users->username = $_POST['username'];
-        if ($users->checkIfUserExists() == 0) {
+        if ($users->checkIfUsernameExists() == 0) {
             $formErrors['username'] = $formErrors['password'] = INVALID_LOGIN;
         }
     } else {
@@ -40,6 +41,7 @@ if (count($_POST) > 0) {
     } else {
         $formErrors['password'] = EMPTY_PASSWORD;
     }
+    
     /**
      * S'il n'y a aucune erreurs trouvées alors je lance ma méthode getUsersInformations() qui pertmet de récupérer les informations de l'utilisateur
      * je stocke dans mes $_SESSION id, username et idUserRole les valeurs des attributs id, username et idUserRole de la classe users.
@@ -50,6 +52,12 @@ if (count($_POST) > 0) {
         $_SESSION['username'] = $users->username;
         $_SESSION['idUserRole'] = $users->idUserRole;
 
-        var_dump($_SESSION);
+        header('location: userProfile.php');
+        exit;
     }
+}
+
+if (isset($_SESSION['username'])) {
+    header('location:userProfile.php');
+    exit;
 }

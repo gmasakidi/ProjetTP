@@ -57,7 +57,7 @@ class users extends database {
     public function getUserProfile() {
         // Ici les ":" indiquent que ce sont des marqueurs nominatifs, ces valeurs sont vides, on prépare l'entrée de future données, 
         // Le PARAM_STR va dire à la base de donnée de changer la valeur stockée en string. C'est une sécurité pour empêcher les attaques aux requêtes SQL.
-        $query = 'SELECT id, username, mail, DATE_FORMAT(birthdate, "%d/%m/%Y") AS birthdate, password
+        $query = 'SELECT id, username, mail, DATE_FORMAT(birthdate, "%d/%m/%Y") AS birthdate
         FROM 5fe2__users
         WHERE id = :id'; 
         $queryExecute = $this->db->prepare($query);
@@ -65,7 +65,6 @@ class users extends database {
         $queryExecute->execute();
         //On utilise ici le fetch à la place du fetchAll car on cherche à prendre une seule ligne : celle où l'id correspond à la future entrée (':id')
         return $queryExecute->fetch(PDO::FETCH_OBJ);
-        
     }
 
     public function updateUserProfile() {
@@ -116,7 +115,8 @@ class users extends database {
         return true;
     }
 
-    public function checkIfUserExists()
+    //La méthode checkIfUsernameExists permet de savoir si un nom d'utilisateur existe déjà dans la bdd
+    public function checkIfUsernameExists()
     {
         $query = 'SELECT COUNT(username) AS count
         FROM 5fe2__users
@@ -128,4 +128,17 @@ class users extends database {
         //On sélectione le nombre de username correspondant à l'username qu'on a entré (':username'), si ça nous retourne 0 alors il n'existe pas, si ça nous retourne 1 alors il existe.
         return $queryResult->count;
     }
+
+    //La méthode checkIfUserExists permet de vérifier si un utilisateur existe dans la bdd
+    public function checkIfUserExists()
+    {
+        $query = 'SELECT COUNT(id) AS count
+        FROM 5fe2__users
+        WHERE id = :id';
+        $queryExecute = $this->db->prepare($query);
+        $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $queryExecute->execute();
+        return $queryExecute->fetch(PDO::FETCH_OBJ);
+    }
+
 }

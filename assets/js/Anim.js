@@ -1,19 +1,39 @@
-element = document.getElementById("animate");
+var triggerTabList = [].slice.call(document.querySelectorAll('#v-pills-home-tab'))
+triggerTabList.forEach(function (triggerEl) {
+  var tabTrigger = new bootstrap.Tab(triggerEl)
 
-if (element) {
-	// reset the transition by...
-	element.addEventListener("click", function(e) {
-		e.preventDefault;
+  triggerEl.addEventListener('click', function (event) {
+    event.preventDefault()
+    tabTrigger.show()
+  })
+})
 
-		console.log('element', element.classList);
+var triggerTabList = [].slice.call(document.querySelectorAll('#v-pills-profile-tab'))
+triggerTabList.forEach(function (triggerEl) {
+  var tabTrigger = new bootstrap.Tab(triggerEl)
 
-		// removing the class
-		element.classList.remove("run-animation");
+  triggerEl.addEventListener('click', function (event) {
+    event.preventDefault()
+    tabTrigger.show()
+  })
+})
 
-		// triggering reflow
-		void element.offsetWidth;
+var triggerTabList = [].slice.call(document.querySelectorAll('v-pills-messages-tab'))
+triggerTabList.forEach(function (triggerEl) {
+  var tabTrigger = new bootstrap.Tab(triggerEl)
 
-		// and re-adding the class
-		element.classList.add("run-animation");
-	}, false);
-}
+  triggerEl.addEventListener('click', function (event) {
+    event.preventDefault()
+    tabTrigger.show()
+  })
+})
+
+var triggerTabList = [].slice.call(document.querySelectorAll('v-pills-settings-tab'))
+triggerTabList.forEach(function (triggerEl) {
+  var tabTrigger = new bootstrap.Tab(triggerEl)
+
+  triggerEl.addEventListener('click', function (event) {
+    event.preventDefault()
+    tabTrigger.show()
+  })
+})

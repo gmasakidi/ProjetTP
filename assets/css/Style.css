@@ -128,7 +128,24 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
-  
+  /* PROFILE PAGE CSS */
+
+  /* main-profile {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100vh;
+    height: -webkit-fill-available;
+    max-height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+  } */
+  .profileSidebar {
+    width: 100%;
+  }
+  .usernameColor {
+    background: linear-gradient(to right, #7927b2, #fb3182) !important;
+  }
+
   /* RESPONSIVE CSS
   -------------------------------------------------- */
   
