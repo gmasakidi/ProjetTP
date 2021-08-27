@@ -14,6 +14,7 @@ class users extends database {
     public $birthdate = '01/01/1940';
     public $photo = '';
     public $idUserRole = 0;
+    public $birthdatefr = '01/01/1940';
 
     /**
      * Ici la méthode magique __costruct assure la connexion à la base de donnée en appellant la méthode construct du parent "database" 
@@ -57,7 +58,7 @@ class users extends database {
     public function getUserProfile() {
         // Ici les ":" indiquent que ce sont des marqueurs nominatifs, ces valeurs sont vides, on prépare l'entrée de future données, 
         // Le PARAM_STR va dire à la base de donnée de changer la valeur stockée en string. C'est une sécurité pour empêcher les attaques aux requêtes SQL.
-        $query = 'SELECT id, username, mail, DATE_FORMAT(birthdate, "%d/%m/%Y") AS birthdate
+        $query = 'SELECT id, username, mail, DATE_FORMAT(birthdate, "%d/%m/%Y") AS birthdatefr, birthdate
         FROM 5fe2__users
         WHERE id = :id'; 
         $queryExecute = $this->db->prepare($query);
@@ -75,8 +76,17 @@ class users extends database {
         $queryExecute->bindValue(':username', $this->username, PDO::PARAM_STR);
         $queryExecute->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $queryExecute->bindValue(':birthdate', $this->birthdate, PDO::PARAM_STR);
-        $queryExecute->bindValue(':phone', $this->phone, PDO::PARAM_STR);
         $queryExecute->bindValue(':password', $this->password, PDO::PARAM_STR);
+        $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
+        return $queryExecute->execute();
+    }
+
+    public function updateUserMail() {
+        $query = 'UPDATE 5fe2__users 
+        SET mail = :mail
+        WHERE id=:id'; 
+        $queryExecute = $this->db->prepare($query);
+        $queryExecute->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $queryExecute->execute();
     }

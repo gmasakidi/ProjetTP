@@ -3,6 +3,7 @@ session_start();
 
 require_once 'models/database.php';
 require_once 'models/usersModel.php';
+require_once 'config.php';
 require_once 'controllers/userProfileController.php';
 $title = 'Profil';
 require_once 'includes/header.php';
@@ -60,11 +61,48 @@ require_once 'includes/header.php';
                 </div>
                 <div class="tab-pane fade mt-5" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <h2 class="fs-3">Mes informations</h2>
-                    <ul class="list-group list-group-flush mb-3">
+                    <ul class="list-group list-group-flush mb-4">
                         <li class="list-group-item"><span class="fw-bold">Nom d'utilisateur :</span> <?= $usersProfile->username; ?></li>
-                        <li class="list-group-item"><span class="fw-bold">Adresse mail :</span> <?= $usersProfile->mail; ?></li>
-                        <li class="list-group-item"><span class="fw-bold">Date de naissance :</span> <?= $usersProfile->birthdate ?></li>
+                        <li class="list-group-item"><span class="fw-bold">Adresse mail :</span><span id="userMail"> <?= $usersProfile->mail; ?></span></li>
+                        <li class="list-group-item"><span class="fw-bold">Date de naissance :</span> <?= $usersProfile->birthdatefr; ?></li>
                     </ul>
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Modifier
+                    </button>
+                    <!-- Modale pour modifier le profil -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Modifier mes informations</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="form-signin" action="userProfile.php" method="post">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control inputNoBottomRadius" id="username" name="username" placeholder="Ex: Dracofeu" value="<?= $usersProfile->username ?>" disabled />
+                                            <label for="username">Nom d'utilisateur</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="mail" class="form-control inputNoTopRadius <?= !isset($formErrors['mail']) ?: 'is-invalid' ?>" id="mail" name="mail" placeholder="moi@exemple.fr" value="<?= @$_POST['mail'] ?>" />
+                                            <label for="mail">Adresse mail</label>
+                                            <small class="invalid-feedback" id="mailError"><?= @$formErrors['mail'] ?></small>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            <input type="date" class="form-control" id="birthdate" name="birthdate" value="<?= $usersProfile->birthdate ?>" disabled />
+                                            <label for="birthdate">Date de naissance</label>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                            <button type="button" id="confirm" class="btn btn-danger">Confirmer</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fin de la modale  -->
                 </div>
                 <div class="tab-pane fade mt-5" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">J'AI TOUT OUBLIE</div>
                 <div class="tab-pane fade mt-5" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">QUAND TU M'AS OUBLIE</div>

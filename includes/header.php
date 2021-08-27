@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous" />
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css" />
     <title>SeriesTrackr - <?= $title ?></title>
 </head>
 <!-- Si on se trouve sur la page index alors on ne fait rien, sinon on applique la classe signInBody -->
@@ -42,17 +42,17 @@
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                         <input type="search" class="form-control" placeholder="Ex : Glee" aria-label="Search">
                     </form>
-                    <div class="flex-shrink-0 dropdown">
+                    <div>
                         <a href="#" class="d-block text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-circle"></i>
                         </a>
-                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
-                            <?php if (empty($_SESSION['username']) && empty($_SESSION['id'])) { ?>
+                        <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser1">
+                            <?php if (!isset($_SESSION['username']) && !isset($_SESSION['id'])) { ?>
                                 <li><a class="dropdown-item" href="login.php">Se connecter</a></li>
                                 <li><a class="dropdown-item" href="register.php">S'inscrire</a></li>
                             <?php } ?>
                             <?php if (!empty($_SESSION['username']) && !empty($_SESSION['id'])) { ?>
-                                <li><a class="dropdown-item" href="userProfile.php">Profil</a></li>
+                                <li><a class="dropdown-item" href="userProfile.php">Mon profil</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
