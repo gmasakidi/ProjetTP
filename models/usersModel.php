@@ -91,6 +91,16 @@ class users extends database {
         return $queryExecute->execute();
     }
 
+    public function updateUserPassword() {
+        $query = 'UPDATE 5fe2__users 
+        SET password = :password
+        WHERE id=:id'; 
+        $queryExecute = $this->db->prepare($query);
+        $queryExecute->bindValue(':password', $this->password, PDO::PARAM_STR);
+        $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
+        return $queryExecute->execute();
+    }
+
     public function deleteUser() {
         $query = 'DELETE FROM 5fe2__users
         WHERE id = :id';

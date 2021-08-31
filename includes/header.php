@@ -30,7 +30,7 @@
                             <a class="nav-link" aria-current="page" href="#">Actualité</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Séries</a>
+                            <a class="nav-link" aria-current="page" href="seriesSelect.php">Séries</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="#">Contact</a>

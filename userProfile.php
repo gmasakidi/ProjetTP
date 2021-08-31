@@ -104,8 +104,69 @@ require_once 'includes/header.php';
                     </div>
                     <!-- Fin de la modale  -->
                 </div>
-                <div class="tab-pane fade mt-5" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">J'AI TOUT OUBLIE</div>
-                <div class="tab-pane fade mt-5" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">QUAND TU M'AS OUBLIE</div>
+                <div class="tab-pane fade mt-5" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                    <h2 class="fs-3">Sécurité</h2>
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                        Changer de mot de passe
+                    </button>
+                    <!-- Modale pour modifier le mot de passe -->
+                    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Changer le mot de passe</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="form-signin" action="userProfile.php" method="post">
+                                        <div class="form-floating">
+                                            <input type="password" class="form-control inputNoBottomRadius <?= !isset($formErrors['password']) ?: 'is-invalid' ?>" id="password" name="password" placeholder="Password" value="<?= @$_POST['password'] ?>" />
+                                            <label for="password">Mot de passe</label>
+                                            <small class="invalid-feedback" id="passwordError"><?= @$formErrors['password'] ?></small>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="password" class="form-control inputNoTopRadius <?= !isset($formErrors['confirmPassword']) ?: 'is-invalid' ?>" id="confirmPassword" name="confirmPassword" placeholder="Confirmer mot de passe" value="<?= @$_POST['confirmPassword'] ?>" />
+                                            <label for="confirmPassword">Confirmer mot de passe</label>
+                                            <small class="invalid-feedback" id="confirmPasswordError"><?= @$formErrors['confirmPassword'] ?></small>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                            <button type="button" id="confirmPasswordChange" class="btn btn-danger">Confirmer</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fin de la modale  -->
+                </div>
+                <div class="tab-pane fade mt-5" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                    <h2 class="fs-3 mb-4">Paramètres</h2>
+                    <button type="button" class="btn btn-outline-danger btn-lg" data-bs-toggle="modal" data-bs-target="#testModal" data-bs-test="<?= $_SESSION['id'] ?>">Supprimer mon compte</i></button>
+                    <div class="modal fade" id="testModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Souhaitez-vous vraiment supprimer votre compte ?</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="userProfile.php" method="post">
+                                        <div class="mb-3">
+                                            <label for="idRecipient" class="col-form-label"></label>
+                                            <input type="hidden" class="form-control" name="idRecipient" id="idRecipient" />
+                                            <p>Cette action supprimera définitivement votre compte et toutes les informations qu'il contient.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-danger" name="deleteUserButton" id="deleteUserButton">Confirmer</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
