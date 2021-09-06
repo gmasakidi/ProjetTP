@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>SeriesTrackr - <?= $title ?></title>
 </head>
+
 <!-- Si on se trouve sur la page index alors on ne fait rien, sinon on applique la classe signInBody -->
 
 <body <?= $_SERVER['PHP_SELF'] == '/Projet TP/index.php' || '/Projet TP/userProfile.php' ?: 'class="signInBody"'; ?>>
@@ -35,9 +36,11 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="#">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li>
+                        <?php if (isset($_SESSION['username']) && isset($_SESSION['id'])) { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="adminPage.php">Admin control</a>
+                            </li>
+                        <?php } ?>
                     </ul>
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                         <input type="search" class="form-control" placeholder="Ex : Glee" aria-label="Search">

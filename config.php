@@ -15,6 +15,9 @@ define('INVALID_BIRTHDATE', 'La date de naissance est incorrecte.');
 define('EMPTY_MAIL', 'L\'adresse mail est obligatoire.');
 define('INVALID_MAIL', 'L\'adresse mail est incorrecte.');
 
+define('EMPTY_PHOTO', 'La photo est obligatoire.');
+define('INVALID_PHOTO', 'La photo n\'est pas au bon format');
+
 $regex = [
     'username' => '/^[a-zA-Z0-9]{3,50}$/',
     'birthdate' =>  '/^[0-9]{4}(-){1}((0[1-9])|(1[0-2])){1}(-){1}((0[1-9])|((1|2)[0-9])|(3[0-1]))$/',
