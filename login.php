@@ -11,7 +11,7 @@ require_once 'includes/header.php';
 
 <div class="container">
     <div class="row">
-        <div class="col-12 text-center">
+        <div class="col-12 text-center mt-5">
             <?php if (isset($formErrors['db'])) { ?>
                 <div class="alert alert-danger" role="alert">
                     <?= $formErrors['db'] ?>

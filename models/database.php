@@ -8,7 +8,7 @@ class database {
         // Ceci permet la connexion à la base de donnée on doit préciser le nom de la bdd + l'identifiant de sa bdd et son mdp
         // Il essaie d'abord la connexion, attrape le message d'erreur si la connexion échoue et affiche le message
         try{
-            $this->db = new PDO('mysql:host=localhost;dbname=seriestrakr;charset=utf8', 'root', '223311Pp!');
+            $this->db = new PDO('mysql:host=localhost;dbname=seriestrackr;charset=utf8', 'root', '223311Pp!');
             return $this->db;
         } catch (Exception $error){
             die ($error->getMessage());

@@ -16,7 +16,7 @@ document.querySelector('#confirm').addEventListener('click', () => {
         console.log(this.responseText);
         if (this.responseText == 1) {
           document.querySelector('#mailError').innerHTML = 'Votre adresse mail a bien été modifiée.';
-          document.querySelector('#userMail').innerHTML = '<?= $usersProfile->mail; ?>';
+          document.querySelector('#userMail').innerHTML = mail.value;
           document.querySelector('#mailError').classList.add('valid-feedback');
           mail.classList.add('is-valid');
         } else {

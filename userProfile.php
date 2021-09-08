@@ -11,7 +11,7 @@ require_once 'includes/header.php';
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-2 p-0">
+        <div class="col-2 p-0 mt-5">
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light ms-0 profileSidebar">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <svg class="bi me-2" width="40" height="32">
@@ -46,7 +46,7 @@ require_once 'includes/header.php';
                 </div>
             </div>
         </div>
-        <div class="col-10 d-flex justify-content-center">
+        <div class="col-10 d-flex justify-content-center mt-5">
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active mt-5" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                     <h1 class="fs-3">Bienvenue, <span class=" fw-bolder"><?= $usersProfile->username; ?></span> !</h1>

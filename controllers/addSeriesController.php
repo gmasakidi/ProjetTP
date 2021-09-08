@@ -1,32 +1,76 @@
 <?php
 
-if(count($_POST) > 0) {
+if (count($_POST) > 0) {
+
+    //J'appelle ma classe
+    $series = new series();
+
+    // J'initialise mon tableau formErrors qui contiendra tous mes messages d'erreurs
+    $formErrors = [];
+
+    if (!empty($_POST['title'])) {
+        $series->title = htmlspecialchars(strtoupper($_POST['title']));
+    } else {
+        $formErrors['title'] = EMPTY_TITLE;
+    }
+
+    if (!empty($_POST['synopsis'])) {
+        $series->synopsis = htmlspecialchars($_POST['synopsis']);
+    } else {
+        $formErrors['synopsis'] = EMPTY_SYNOPSIS;
+    }
+
+    if (!empty($_POST['creators'])) {
+        if (preg_match($regex['actors'], $_POST['creators'])) {
+            $series->creators = strtoupper($_POST['creators']);
+        } else {
+            $formErrors['creators'] = INVALID_CREATORS;
+        }
+    } else {
+        $formErrors['creators'] = EMPTY_CREATORS;
+    }
+
+    if (!empty($_POST['actors'])) {
+        if (preg_match($regex['actors'], $_POST['actors'])) {
+            $series->actors = strtoupper($_POST['actors']);
+        } else {
+            $formErrors['actors'] = INVALID_ACTORS;
+        }
+    } else {
+        $formErrors['actors'] = EMPTY_ACTORS;
+    }
+
+    if (!empty($_POST['year'])) {
+        $series->year = $_POST['year'];
+    } else {
+        $formErrors['year'] = EMPTY_YEAR;
+    }
+
     /**
      * Le tableau super global $_FILES se remplit dès que l'on envoie un fichier. Il crée alors une entrée ['nomDuFichier'] qui devient elle-même un tableau.
      * Ce nouveau tableau ($_FILES['nomDuFichier']) contient des informations très utiles comme le nom du fichier, sa taille et s'il y a eu une erreur lors de l'upload
      * Conseil : Pensez au var_dump, il permet de visualiser une variable ou un tableau
      */
-    if ($_FILES['photo']['error'] == 0) {
-        $photoExtension = strtolower(pathinfo($_FILES['photo']['name'])['extension']);
-        $authorizedExtensions = ['png', 'jpeg', 'jpg', 'gif'];
-        $authorizedMimeTypes = [
-            'png' => 'image/png',
-            'jpg' => 'image/jpeg',
-            'jpeg' => 'image/jpeg',
-            'gif' => 'image/gif'
-        ];
 
-        if (in_array($photoExtension, $authorizedExtensions) && mime_content_type($_FILES['photo']['tmp_name']) == $authorizedMimeTypes[$photoExtension]) {
-            if (move_uploaded_file($_FILES['photo']['tmp_name'], 'uploads/' . $_FILES['photo']['name'])) {
-                chmod('uploads/' . $_FILES['photo']['name'], 0644);
-                $series->photo = 'uploads/' . $_FILES['photo']['name'];
+    if ($_FILES['poster']['error'] == 0) {
+        $posterExtension = strtolower(pathinfo($_FILES['poster']['name'])['extension']);
+        $authorizedExtensions = ['png', 'jpeg', 'jpg', 'gif'];
+
+        if (in_array($posterExtension, $authorizedExtensions)) {
+            if (move_uploaded_file($_FILES['poster']['tmp_name'], 'assets/uploads/' . $_FILES['poster']['name'])) {
+                chmod('uploads/' . $_FILES['poster']['name'], 0644);
+                $series->photo = '../assets/uploads/' . $_FILES['poster']['name'];
             } else {
-                $formErrors['photo'] = 'Une erreur est survenue';
+                $formErrors['poster'] = 'Une erreur est survenue lors de l\'envoi.';
             }
         } else {
-            $formErrors['photo'] = INVALID_PHOTO;
+            $formErrors['poster'] = INVALID_POSTER;
         }
     } else {
-        $formErrors['photo'] = EMPTY_PHOTO;
+        $formErrors['poster'] = EMPTY_POSTER;
+    }
+
+    if(count($formErrors) == 0){
+        $addSeries = $series->addSeries();
     }
 }

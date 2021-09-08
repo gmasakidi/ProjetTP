@@ -25,18 +25,22 @@ if (isset($_GET['ajax'])) {
             $users->mail = htmlspecialchars($_GET['mail']);
         } else {
             $formErrors['mail'] = INVALID_MAIL;
-        }
-
-        if ($users->updateUserMail()) {
-            echo true;
-        } else {
-            $formErrors['mail'] = 'ERREUR DB';
             echo json_encode($formErrors);
+        }
+        if(!isset($formErrors['mail'])){
+            if ($users->updateUserMail()) {
+                echo true;
+            } else {
+                $formErrors['mail'] = 'ERREUR DB';
+                echo json_encode($formErrors);
+            }
         }
     } else {
         $formErrors['mail'] = EMPTY_MAIL;
         echo json_encode($formErrors);
     }
+
+
 } elseif (isset($_GET['passwordAjax'])) {
     session_start();
     require_once '../config.php';

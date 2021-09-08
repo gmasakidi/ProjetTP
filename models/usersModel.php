@@ -13,7 +13,7 @@ class users extends database {
     public $password = '';
     public $birthdate = '01/01/1940';
     public $photo = '';
-    public $idUserRole = 0;
+    public $idRoles = 0;
     public $birthdatefr = '01/01/1940';
 
     /**
@@ -29,7 +29,7 @@ class users extends database {
 
     public function addUser() {
         //Ici les ":" indiquent que ce sont des marqueurs nominatifs, ces valeurs sont vides, on prépare l'entrée de future données,
-        $query = 'INSERT INTO 5fe2__users (username, mail, birthdate, password)
+        $query = 'INSERT INTO f5e2_users (username, mail, birthdate, password)
         VALUES (:username, :mail, :birthdate, :password)';
         //On utilise prepare lorsque l'on a des marqueurs nominatifs, mais elle n'execute pas la requete directement contrairement à query
         $queryExecute = $this->db->prepare($query);
@@ -46,7 +46,7 @@ class users extends database {
 
     public function getUserslist() {
         $query = 'SELECT id, username, mail, DATE_FORMAT(birthdate, "%d/%m/%Y") AS birthdate, password
-        FROM 5fe2__users';
+        FROM f5e2_users';
         //On lance la méthode query qui contient notre requête qu'on lui donne en paramètre
         $queryExecute = $this->db->query($query);
         //On utilise le fetchAll ici car on veut prendre toutes les lignes de la table user
@@ -59,7 +59,7 @@ class users extends database {
         // Ici les ":" indiquent que ce sont des marqueurs nominatifs, ces valeurs sont vides, on prépare l'entrée de future données, 
         // Le PARAM_STR va dire à la base de donnée de changer la valeur stockée en string. C'est une sécurité pour empêcher les attaques aux requêtes SQL.
         $query = 'SELECT id, username, mail, DATE_FORMAT(birthdate, "%d/%m/%Y") AS birthdatefr, birthdate
-        FROM 5fe2__users
+        FROM f5e2_users
         WHERE id = :id'; 
         $queryExecute = $this->db->prepare($query);
         $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
@@ -69,7 +69,7 @@ class users extends database {
     }
 
     public function updateUserProfile() {
-        $query = 'UPDATE 5fe2__users 
+        $query = 'UPDATE f5e2_users 
         SET username = :username, mail = :mail, birthdate = :birthdate, password = :password
         WHERE id=:id'; 
         $queryExecute = $this->db->prepare($query);
@@ -82,7 +82,7 @@ class users extends database {
     }
 
     public function updateUserMail() {
-        $query = 'UPDATE 5fe2__users 
+        $query = 'UPDATE f5e2_users 
         SET mail = :mail
         WHERE id=:id'; 
         $queryExecute = $this->db->prepare($query);
@@ -92,7 +92,7 @@ class users extends database {
     }
 
     public function updateUserPassword() {
-        $query = 'UPDATE 5fe2__users 
+        $query = 'UPDATE f5e2_users 
         SET password = :password
         WHERE id=:id'; 
         $queryExecute = $this->db->prepare($query);
@@ -102,7 +102,7 @@ class users extends database {
     }
 
     public function deleteUser() {
-        $query = 'DELETE FROM 5fe2__users
+        $query = 'DELETE FROM f5e2_users
         WHERE id = :id';
         $queryExecute = $this->db->prepare($query);
         $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);   
@@ -113,7 +113,7 @@ class users extends database {
     public function getHashByUsername()
     {
         $query = 'SELECT password 
-        FROM 5fe2__users
+        FROM f5e2_users
         WHERE username = :username';
         $queryExecute = $this->db->prepare($query);
         $queryExecute->bindValue(':username', $this->username, PDO::PARAM_STR);
@@ -123,15 +123,15 @@ class users extends database {
 
     public function getUsersInformations()
     {
-        $query = 'SELECT id, idUserRole
-        FROM 5fe2__users
+        $query = 'SELECT id, idRoles
+        FROM f5e2_users
         WHERE username = :username';
         $queryExecute = $this->db->prepare($query);
         $queryExecute->bindValue(':username', $this->username, PDO::PARAM_STR);
         $queryExecute->execute();
         $queryResult = $queryExecute->fetch(PDO::FETCH_OBJ);
         $this->id = $queryResult->id;
-        $this->idUserRole = $queryResult->idUserRole;
+        $this->idRoles = $queryResult->idRoles;
         return true;
     }
 
@@ -139,7 +139,7 @@ class users extends database {
     public function checkIfUsernameExists()
     {
         $query = 'SELECT COUNT(username) AS count
-        FROM 5fe2__users
+        FROM f5e2_users
         WHERE username = :username';
         $queryExecute = $this->db->prepare($query);
         $queryExecute->bindValue(':username', $this->username, PDO::PARAM_STR);
@@ -153,7 +153,7 @@ class users extends database {
     public function checkIfUserExists()
     {
         $query = 'SELECT COUNT(id) AS count
-        FROM 5fe2__users
+        FROM f5e2_users
         WHERE id = :id';
         $queryExecute = $this->db->prepare($query);
         $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
