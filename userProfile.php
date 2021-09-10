@@ -64,7 +64,6 @@ require_once 'includes/header.php';
                     <ul class="list-group list-group-flush mb-4">
                         <li class="list-group-item"><span class="fw-bold">Nom d'utilisateur :</span> <?= $usersProfile->username; ?></li>
                         <li class="list-group-item"><span class="fw-bold">Adresse mail :</span><span id="userMail"> <?= $usersProfile->mail; ?></span></li>
-                        <li class="list-group-item"><span class="fw-bold">Date de naissance :</span> <?= $usersProfile->birthdatefr; ?></li>
                     </ul>
                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         Modifier
@@ -89,10 +88,6 @@ require_once 'includes/header.php';
                                             <small class="invalid-feedback" id="mailError"><?= @$formErrors['mail'] ?></small>
                                         </div>
 
-                                        <div class="form-floating mb-3">
-                                            <input type="date" class="form-control" id="birthdate" name="birthdate" value="<?= $usersProfile->birthdate ?>" disabled />
-                                            <label for="birthdate">Date de naissance</label>
-                                        </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
                                             <button type="button" id="confirm" class="btn btn-danger">Confirmer</button>

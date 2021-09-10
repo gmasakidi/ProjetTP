@@ -29,17 +29,7 @@ if (count($_POST) > 0) {
     } else {
         $formErrors['creators'] = EMPTY_CREATORS;
     }
-
-    if (!empty($_POST['actors'])) {
-        if (preg_match($regex['actors'], $_POST['actors'])) {
-            $series->actors = strtoupper($_POST['actors']);
-        } else {
-            $formErrors['actors'] = INVALID_ACTORS;
-        }
-    } else {
-        $formErrors['actors'] = EMPTY_ACTORS;
-    }
-
+    
     if (!empty($_POST['year'])) {
         $series->year = $_POST['year'];
     } else {
@@ -57,9 +47,9 @@ if (count($_POST) > 0) {
         $authorizedExtensions = ['png', 'jpeg', 'jpg', 'gif'];
 
         if (in_array($posterExtension, $authorizedExtensions)) {
-            if (move_uploaded_file($_FILES['poster']['tmp_name'], 'assets/uploads/' . $_FILES['poster']['name'])) {
-                chmod('uploads/' . $_FILES['poster']['name'], 0644);
-                $series->photo = '../assets/uploads/' . $_FILES['poster']['name'];
+            if (move_uploaded_file($_FILES['poster']['tmp_name'], 'assets/uploads/Series/' . $_FILES['poster']['name'])) {
+                chmod('uploads/Series/' . $_FILES['poster']['name'], 0644);
+                $series->photo = '../assets/uploads/Series/' . $_FILES['poster']['name'];
             } else {
                 $formErrors['poster'] = 'Une erreur est survenue lors de l\'envoi.';
             }
@@ -68,6 +58,12 @@ if (count($_POST) > 0) {
         }
     } else {
         $formErrors['poster'] = EMPTY_POSTER;
+    }
+
+    if (!empty($_POST['seriesStatus'])) {
+        $series->idStatus = $_POST['seriesStatus'];
+    } else {
+        $formErrors['seriesStatus'] = EMPTY_SERIES_STATUS;
     }
 
     if(count($formErrors) == 0){

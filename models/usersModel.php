@@ -11,10 +11,9 @@ class users extends database {
     public $username = '';
     public $mail = '';
     public $password = '';
-    public $birthdate = '01/01/1940';
     public $photo = '';
     public $idRoles = 0;
-    public $birthdatefr = '01/01/1940';
+
 
     /**
      * Ici la méthode magique __costruct assure la connexion à la base de donnée en appellant la méthode construct du parent "database" 
@@ -29,15 +28,14 @@ class users extends database {
 
     public function addUser() {
         //Ici les ":" indiquent que ce sont des marqueurs nominatifs, ces valeurs sont vides, on prépare l'entrée de future données,
-        $query = 'INSERT INTO f5e2_users (username, mail, birthdate, password)
-        VALUES (:username, :mail, :birthdate, :password)';
+        $query = 'INSERT INTO f5e2_users (username, mail, password)
+        VALUES (:username, :mail, :password)';
         //On utilise prepare lorsque l'on a des marqueurs nominatifs, mais elle n'execute pas la requete directement contrairement à query
         $queryExecute = $this->db->prepare($query);
         //Le bindvalue va attribuer les données aux marqueurs nominatifs
         //Le PARAM_STR va dire à la base de donnée de changer la valeur stockée en string. C'est une sécurité pour empêcher les attaques aux requêtes SQL.
         $queryExecute->bindValue(':username', $this->username, PDO::PARAM_STR);
         $queryExecute->bindValue(':mail', $this->mail, PDO::PARAM_STR);
-        $queryExecute->bindValue(':birthdate', $this->birthdate, PDO::PARAM_STR);
         $queryExecute->bindValue(':password', $this->password, PDO::PARAM_STR);
         //L'execute va éxécuter la requête préparée avec les valeurs données dans le bindvalue qui elles seront tirées de nos inputs
         //On retourne l'execute qui nous renvoi ici true ou false (booléan) car cette méthode ne nous permet pas de récuperer des infos (fetch ou fetch all --> le return nous renverrait alors un tableau)
@@ -45,7 +43,7 @@ class users extends database {
     }
 
     public function getUserslist() {
-        $query = 'SELECT id, username, mail, DATE_FORMAT(birthdate, "%d/%m/%Y") AS birthdate, password
+        $query = 'SELECT id, username, mail, password
         FROM f5e2_users';
         //On lance la méthode query qui contient notre requête qu'on lui donne en paramètre
         $queryExecute = $this->db->query($query);
@@ -58,7 +56,7 @@ class users extends database {
     public function getUserProfile() {
         // Ici les ":" indiquent que ce sont des marqueurs nominatifs, ces valeurs sont vides, on prépare l'entrée de future données, 
         // Le PARAM_STR va dire à la base de donnée de changer la valeur stockée en string. C'est une sécurité pour empêcher les attaques aux requêtes SQL.
-        $query = 'SELECT id, username, mail, DATE_FORMAT(birthdate, "%d/%m/%Y") AS birthdatefr, birthdate
+        $query = 'SELECT id, username, mail
         FROM f5e2_users
         WHERE id = :id'; 
         $queryExecute = $this->db->prepare($query);
@@ -70,12 +68,11 @@ class users extends database {
 
     public function updateUserProfile() {
         $query = 'UPDATE f5e2_users 
-        SET username = :username, mail = :mail, birthdate = :birthdate, password = :password
+        SET username = :username, mail = :mail, password = :password
         WHERE id=:id'; 
         $queryExecute = $this->db->prepare($query);
         $queryExecute->bindValue(':username', $this->username, PDO::PARAM_STR);
         $queryExecute->bindValue(':mail', $this->mail, PDO::PARAM_STR);
-        $queryExecute->bindValue(':birthdate', $this->birthdate, PDO::PARAM_STR);
         $queryExecute->bindValue(':password', $this->password, PDO::PARAM_STR);
         $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $queryExecute->execute();
@@ -94,7 +91,7 @@ class users extends database {
     public function updateUserPassword() {
         $query = 'UPDATE f5e2_users 
         SET password = :password
-        WHERE id=:id'; 
+        WHERE id = :id'; 
         $queryExecute = $this->db->prepare($query);
         $queryExecute->bindValue(':password', $this->password, PDO::PARAM_STR);
         $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);

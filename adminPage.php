@@ -35,4 +35,17 @@ require_once 'includes/header.php';
             </div>
         </div>
     </div>
+    <div class="row mt-5">
+        <div class="col-md-6 text-center d-flex justify-content-center mt-4 mt-md-0">
+            <div class="card w-50 d-flex justify-content-center">
+                <div class="card-body">
+                    <h5 class="card-title">Articles</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a class="link-secondary" href="seriesList.php">Liste des articles</a></li>
+                        <li class="list-group-item"><a class="link-secondary" href="addArticle.php">Ajouter un article</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

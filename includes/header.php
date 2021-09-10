@@ -28,7 +28,7 @@
                             <a class="nav-link" aria-current="page" href="index.php">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Actualité</a>
+                            <a class="nav-link" aria-current="page" href="newsFeedPage.php">Actualités</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="seriesSelect.php">Séries</a>

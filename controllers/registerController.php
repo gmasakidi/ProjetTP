@@ -50,22 +50,6 @@ if (count($_POST) > 0) {
     } else {
         $formErrors['mail'] = EMPTY_MAIL;
     }
-
-    /** 
-     * Si mon champs birthdate n'est pas vide alors je compare son contenu à ma regex birthdate, sinon j'informe l'utilisateur que
-     * le champs est obligatoire.
-     * Si le contenu de mon champs respecte ma regex alors je stocke le contenu de mon champs
-     * dans l'attribut 'birthdate' de ma classe 'users', sinon j'informe l'utilisateur que la date de naissance est invalide.
-    */
-    if (!empty($_POST['birthdate'])) {
-        if (preg_match($regex['birthdate'], $_POST['birthdate'])) {
-            $users->birthdate = $_POST['birthdate'];
-        } else {
-            $formErrors['birthdate'] = INVALID_BIRTHDATE;
-        }
-    } else {
-        $formErrors['birthdate'] = EMPTY_BIRTHDATE;
-    }
     
     //Si mon champs password n'existe pas ou qu'il existe mais qu'il est vide, alors j'informe l'utilisateur que le champs est obligatoire 
     if (!isset($_POST['password']) || empty($_POST['password'])) {

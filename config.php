@@ -30,9 +30,19 @@ define('EMPTY_SYNOPSIS', 'Le synopsis est obligatoire.');
 
 define('EMPTY_YEAR', 'Veuillez sélectioner une année.');
 
+define('EMPTY_ARTICLE_TITLE', 'Le titre de l\'article est obligatoire.');
+
+define('EMPTY_ARTICLE_CONTENT','Le contenu de l\'article est obligatoire.');
+
+define('EMPTY_ARTICLE_CATEGORY', 'La catégorie d\'article est obligatoire.');
+
+define('INVALID_ARTICLE_PHOTO', 'La photo n\'est pas au bon format : png, jpeg, jpg, gif uniquement.');
+define('EMPTY_ARTICLE_PHOTO', 'La photo d\'article est obligatoire.'); 
+
+define('EMPTY_SERIES_STATUS', 'La statut de la série est obligatoire.');
+
 $regex = [
     'username' => '/^[a-zA-Z0-9]{3,50}$/',
-    'birthdate' =>  '/^[0-9]{4}(-){1}((0[1-9])|(1[0-2])){1}(-){1}((0[1-9])|((1|2)[0-9])|(3[0-1]))$/',
     'id' => '/^[1-9][0-9]*$/',
     'actors' => '/^[a-zA-Z0-9 \, \- \']{3,255}$/'
 ]; // les regexs sont stockées ici pour être utilisées dans le fichier addPatientController

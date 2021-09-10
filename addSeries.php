@@ -31,11 +31,6 @@ require_once 'controllers/addSeriesController.php';
                     <small class="invalid-feedback"><?= @$formErrors['creators']; ?></small>
                 </div>
                 <div class="mb-3">
-                    <label for="actors" class="form-label">Acteurs</label>
-                    <input type="text" name="actors" class="form-control <?= !empty($formErrors['actors']) ? 'is-invalid' : ''; ?>" id="actors" value="<?= @$_POST['actors']; ?>" />
-                    <small class="invalid-feedback"><?= @$formErrors['actors']; ?></small>
-                </div>
-                <div class="mb-3">
                     <div class="form-group <?= !isset($formErrors['year']) ?: 'has-danger' ?>">
                         <label for="year" class="form-label">Année de publication </label>
                         <select class="form-select <?= !isset($formErrors['year']) ?: 'is-invalid' ?>" id="year" name="year">
@@ -53,6 +48,18 @@ require_once 'controllers/addSeriesController.php';
                         <label for="poster" class="input-group-text">Photo série</label>
                         <input type="file" name="poster" class="form-control <?= !empty($formErrors['poster']) ? 'is-invalid' : ''; ?>" id="poster">
                         <small class="invalid-feedback"><?= @$formErrors['poster']; ?></small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-group <?= !isset($formErrors['seriesStatus']) ?: 'has-danger' ?>">
+                        <label for="seriesStatus" class="form-label">Statut de la série</label>
+                        <select class="form-select <?= !isset($formErrors['seriesStatus']) ?: 'is-invalid' ?>" id="seriesStatus" name="seriesStatus">
+                            <option selected disabled>Sélectionner le statut de la série</option>
+                            <option value="1">En cours</option>
+                            <option value="2">Terminé</option>
+                            <option value="3">Prochainement</option>
+                        </select>
+                        <small class="invalid-feedback"><?= @$formErrors['seriesStatus'] ?></small>
                     </div>
                 </div>
                 <input type="submit" class="btn btn-primary" value="Envoyer" />

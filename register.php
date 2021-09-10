@@ -38,12 +38,6 @@ require_once 'includes/header.php';
                     <label for="mail">Adresse mail</label>
                     <small class="invalid-feedback"><?= @$formErrors['mail'] ?></small>
                 </div>
-
-                <div class="form-floating mb-3">
-                    <input type="date" class="form-control <?= !isset($formErrors['birthdate']) ?: 'is-invalid' ?>" id="birthdate" name="birthdate" value="<?= @$_POST['birthdate'] ?>" />
-                    <label for="birthdate">Date de naissance</label>
-                    <small class="invalid-feedback"><?= @$formErrors['birthdate'] ?></small>
-                </div>
                 <div class="form-floating">
                     <input type="password" class="form-control inputNoBottomRadius <?= !isset($formErrors['password']) ?: 'is-invalid' ?>" id="password" name="password" placeholder="Password" value="<?= @$_POST['password'] ?>" />
                     <label for="password">Mot de passe</label>
