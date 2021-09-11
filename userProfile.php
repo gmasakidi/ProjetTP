@@ -49,13 +49,13 @@ require_once 'includes/header.php';
         <div class="col-10 d-flex justify-content-center mt-5">
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active mt-5" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                    <h1 class="fs-3">Bienvenue, <span class=" fw-bolder"><?= $usersProfile->username; ?></span> !</h1>
+                    <h1 class="fs-3">Bienvenue, <span class="fw-bolder"><?= $usersProfile->username; ?></span> !</h1>
                     <p>Voici ton espace personnel. Sur cet espace, tu peux gérer ton compte de la manière dont tu le souhaites :</p>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Avoir accès à toutes les informations liées à mon compte</li>
                         <li class="list-group-item">Modifier mon adresse mail</li>
                         <li class="list-group-item">Modifier mon mot de passe</li>
-                        <li class="list-group-item">Modifier mon photo de profil</li>
+                        <li class="list-group-item">Modifier ma photo de profil</li>
                         <li class="list-group-item text-danger">Supprimer mon compte</li>
                     </ul>
                 </div>

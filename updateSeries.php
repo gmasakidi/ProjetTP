@@ -1,33 +1,48 @@
 <?php
 session_start();
 
-$title = 'Ajouter une série';
+$title = 'Modifier une série';
 require_once 'includes/header.php';
 require_once 'models/database.php';
 require_once 'models/seriesModel.php';
 require_once 'config.php';
-require_once 'controllers/addSeriesController.php';
+require_once 'controllers/updateSeriesController.php';
 ?>
 <div class="container">
+    <?php if (isset($formErrors['db'])) { ?>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-center alert alert-danger" role="alert">
+                <p class="text-center"><?= $formErrors['db'] ?></p>
+            </div>
+        </div>
+    <?php } else { ?>
+        <?php if (isset($success)) { ?>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6 d-flex justify-content-center alert alert-success" role="alert">
+                    <p class="text-center"><?= $success ?></p>
+                </div>
+            </div>
+        <?php } ?>
+    <?php } ?>
     <div class="row mt-5">
         <div class="col-12 mt-4">
-            <h1 class="text-center">Ajouter une série</h1>
+            <h1 class="text-center">Modifier la série</h1>
         </div>
         <div class="col-12 mt-4 d-flex justify-content-center">
-            <form method="POST" action="addSeries.php" enctype="multipart/form-data" class="w-50 mb-5">
+            <form method="POST" action="updateSeries.php?id=<?= $seriesDetails->id ?>" enctype="multipart/form-data" class="w-50 mb-5">
                 <div class="mb-3">
                     <label for="title" class="form-label">Titre de la série</label>
-                    <input type="text" placeholder="Ex: Narcos" name="title" class="form-control <?= !empty($formErrors['title']) ? 'is-invalid' : ''; ?>" id="title" value="<?= @$_POST['title']; ?>" />
+                    <input type="text" placeholder="Ex: Narcos" name="title" class="form-control <?= !empty($formErrors['title']) ? 'is-invalid' : ''; ?>" id="title" value="<?= $seriesDetails->title ?>" />
                     <small class="invalid-feedback"><?= @$formErrors['title']; ?></small>
                 </div>
                 <div class="mb-3">
                     <label for="synopsis" class="form-label">Synopsis</label>
-                    <textarea name="synopsis" class="form-control <?= !empty($formErrors['synopsis']) ? 'is-invalid' : ''; ?>" id="synopsis" rows="5" cols="33"><?= @$_POST['synopsis']; ?></textarea>
+                    <textarea name="synopsis" class="form-control <?= !empty($formErrors['synopsis']) ? 'is-invalid' : ''; ?>" id="synopsis" rows="5" cols="33"><?= $seriesDetails->synopsis ?></textarea>
                     <small class="invalid-feedback"><?= @$formErrors['synopsis']; ?></small>
                 </div>
                 <div class="mb-3">
                     <label for="creators" class="form-label">Créateur(s)</label>
-                    <input type="text" name="creators" class="form-control <?= !empty($formErrors['creators']) ? 'is-invalid' : ''; ?>" id="creators" value="<?= @$_POST['creators']; ?>" />
+                    <input type="text" name="creators" class="form-control <?= !empty($formErrors['creators']) ? 'is-invalid' : ''; ?>" id="creators" value="<?= $seriesDetails->creators ?>" />
                     <small class="invalid-feedback"><?= @$formErrors['creators']; ?></small>
                 </div>
                 <div class="mb-3">

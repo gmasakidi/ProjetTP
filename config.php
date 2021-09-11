@@ -44,5 +44,5 @@ define('EMPTY_SERIES_STATUS', 'La statut de la série est obligatoire.');
 $regex = [
     'username' => '/^[a-zA-Z0-9]{3,50}$/',
     'id' => '/^[1-9][0-9]*$/',
-    'actors' => '/^[a-zA-Z0-9 \, \- \']{3,255}$/'
+    'actors' => '/^[a-zA-Z0-9 \, \-\'\.]{3,255}$/'
 ]; // les regexs sont stockées ici pour être utilisées dans le fichier addPatientController

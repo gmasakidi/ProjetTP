@@ -41,7 +41,7 @@ require_once 'includes/header.php';
                 <div class="card-body">
                     <h5 class="card-title">Articles</h5>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><a class="link-secondary" href="seriesList.php">Liste des articles</a></li>
+                        <li class="list-group-item"><a class="link-secondary" href="articlesList.php">Liste des articles</a></li>
                         <li class="list-group-item"><a class="link-secondary" href="addArticle.php">Ajouter un article</a></li>
                     </ul>
                 </div>
@@ -49,3 +49,7 @@ require_once 'includes/header.php';
         </div>
     </div>
 </div>
+
+<?php
+require_once 'includes/footer.php';
+?>
