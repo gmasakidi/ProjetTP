@@ -23,7 +23,7 @@ require_once 'includes/header.php';
                         </label>
                     </div>
                 </div>
-                <div class="card ms-4" id="seriesCard" style="width: 12rem;">
+                <div class="card ms-4 seriesCard" style="width: 12rem;">
                     <img src="assets/img/Games_of_Thrones.jpg" class="card-img-top" alt="..." />
                     <div class="center">
                         <label class="label">

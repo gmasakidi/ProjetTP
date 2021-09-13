@@ -39,7 +39,11 @@ define('EMPTY_ARTICLE_CATEGORY', 'La catégorie d\'article est obligatoire.');
 define('INVALID_ARTICLE_PHOTO', 'La photo n\'est pas au bon format : png, jpeg, jpg, gif uniquement.');
 define('EMPTY_ARTICLE_PHOTO', 'La photo d\'article est obligatoire.'); 
 
-define('EMPTY_SERIES_STATUS', 'La statut de la série est obligatoire.');
+define('EMPTY_SERIES_STATUS', 'Le statut de la série est obligatoire.');
+
+define('EMPTY_ARTICLE_COMMENT_CONTENT', 'Votre commentaire ne peut être vide.');
+
+define('LOGGED_OUT', 'Vous devez être connecté afin de pouvoir commenter.');
 
 $regex = [
     'username' => '/^[a-zA-Z0-9]{3,50}$/',

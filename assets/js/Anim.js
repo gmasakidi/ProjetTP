@@ -76,7 +76,6 @@ if (deleteArticleModal != null) {
     //Je déclare l'endroit où je vais afficher mon id : ici, dans l'input 'idRecipient'
     var recipient = deleteArticleModal.querySelector('#idRecipient'); // l'id de l'endroit où tu veux que tes données apparaissent
     var articleTitleRecipient = deleteArticleModal.querySelector('#article');
-    console.log(articleTitle);
 
     //Je stocke dans mon input la valeur stockée dans mon data-bs-test de mon bouton supprimer (l'id du patient ici)
     recipient.value = articleId;
@@ -96,8 +95,6 @@ if (deleteSeriesModal != null) {
     var seriesId = trigger.getAttribute('data-bs-id');
     //Je done à la variable articleTitle la valeur de l'attribut correspondant sur mon bouton
     var seriesTitle = trigger.getAttribute('data-bs-title');
-    console.log(seriesId);
-    console.log(seriesTitle);
 
     //Je déclare l'endroit où je vais afficher mon id : ici, dans l'input 'idRecipient'
     var recipient = deleteSeriesModal.querySelector('#idRecipient'); // l'id de l'endroit où tu veux que tes données apparaissent

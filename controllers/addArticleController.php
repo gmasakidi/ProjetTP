@@ -31,7 +31,7 @@ if (count($_POST) > 0) {
         if (in_array($articlePhotoExtension, $authorizedExtensions)) {
             if (move_uploaded_file($_FILES['articlePhoto']['tmp_name'], 'assets/uploads/Articles/' . $_FILES['articlePhoto']['name'])) {
                 chmod('uploads/Articles/' . $_FILES['articlePhoto']['name'], 0644);
-                $articles->photo = '../assets/uploads/Articles/' . $_FILES['articlePhoto']['name'];
+                $articles->photo = 'assets/uploads/Articles/' . $_FILES['articlePhoto']['name'];
             } else {
                 $formErrors['articlePhoto'] = 'Une erreur est survenue lors de l\'envoi.';
             }

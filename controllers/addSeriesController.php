@@ -49,7 +49,7 @@ if (count($_POST) > 0) {
         if (in_array($posterExtension, $authorizedExtensions)) {
             if (move_uploaded_file($_FILES['poster']['tmp_name'], 'assets/uploads/Series/' . $_FILES['poster']['name'])) {
                 chmod('uploads/Series/' . $_FILES['poster']['name'], 0644);
-                $series->photo = '../assets/uploads/Series/' . $_FILES['poster']['name'];
+                $series->photo = 'assets/uploads/Series/' . $_FILES['poster']['name'];
             } else {
                 $formErrors['poster'] = 'Une erreur est survenue lors de l\'envoi.';
             }

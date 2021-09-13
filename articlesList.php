@@ -40,7 +40,7 @@ require_once 'controllers/articlesListController.php';
                             <td><?= $articlesDetails->content ?></td>
                             <td><?= $articlesDetails->category ?></td>
                             <td><?= $articlesDetails->photo ?></td>
-                            <td><button type="button" href="patientProfile.php?id=<?= $articlesDetails->id ?>" class="btn btn-primary"><i class="bi bi-eye"></i></button></td>
+                            <td><a href="articleDetails.php?id=<?= $articlesDetails->id ?>"><button type="button" class="btn btn-primary"><i class="bi bi-eye"></i></button></a></td>
                             <td><a href="updateArticle.php?id=<?= $articlesDetails->id ?>"><button type="button" class="btn btn-warning"><i class="bi bi-gear"></i></button></a></td>
                             <td><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteArticleModal" data-bs-id="<?= $articlesDetails->id ?>" data-bs-title="<?= $articlesDetails->title ?>"><i class="fas fa-trash"></i></button> <!-- tu peux passer des données à ta modal avec les data-bs-truc -->
                             </td>
