@@ -1,12 +1,17 @@
 <?php
 session_start();
 
-$title = 'Ajouter une série';
-require_once 'includes/header.php';
 require_once 'models/database.php';
 require_once 'models/seriesModel.php';
+require_once 'models/seriesGenresModel.php';
+require_once 'models/seriesHaveGenresModel.php';
+require_once 'models/statusModel.php';
+require_once 'models/actorsModel.php';
+require_once 'models/seriesHaveActorsModel.php';
 require_once 'config.php';
 require_once 'controllers/addSeriesController.php';
+$title = 'Ajouter une série';
+require_once 'includes/header.php';
 ?>
 <div class="container">
     <div class="row mt-5">
@@ -35,7 +40,7 @@ require_once 'controllers/addSeriesController.php';
                         <label for="year" class="form-label">Année de publication </label>
                         <select class="form-select <?= !isset($formErrors['year']) ?: 'is-invalid' ?>" id="year" name="year">
                             <option selected disabled>Choisir une année</option>
-                            <?php for ($i = 2021; $i >= 1900; $i--) {
+                            <?php for ($i = 2021; $i >= 1960; $i--) {
                             ?>
                                 <option value="<?= $i ?>"><?= $i ?></option>
                             <?php } ?>
@@ -50,16 +55,48 @@ require_once 'controllers/addSeriesController.php';
                         <small class="invalid-feedback"><?= @$formErrors['poster']; ?></small>
                     </div>
                 </div>
-                <div class="mb-3">
+                <div class="mb-4">
                     <div class="form-group <?= !isset($formErrors['seriesStatus']) ?: 'has-danger' ?>">
                         <label for="seriesStatus" class="form-label">Statut de la série</label>
                         <select class="form-select <?= !isset($formErrors['seriesStatus']) ?: 'is-invalid' ?>" id="seriesStatus" name="seriesStatus">
                             <option selected disabled>Sélectionner le statut de la série</option>
-                            <option value="1">En cours</option>
-                            <option value="2">Terminé</option>
-                            <option value="3">Prochainement</option>
+                            <?php foreach ($statusList as $status) { ?>
+                                <option value="<?= $status->id ?>"><?= $status->status ?></option>
+                            <?php } ?>
                         </select>
                         <small class="invalid-feedback"><?= @$formErrors['seriesStatus'] ?></small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-group <?= !isset($formErrors['seriesGenres']) ?: 'has-danger' ?>">
+                        <div class="row">
+                            <p class="fw-bold">Choisir les genres</p>
+                            <?php foreach ($seriesGenresList as $seriesGenres) { ?>
+                                <div class="col-4">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="<?= $seriesGenres->name ?>" name="seriesGenres[]" value="<?= $seriesGenres->id ?>">
+                                        <label class="form-check-label" for="<?= $seriesGenres->name ?>"><?= $seriesGenres->name ?></label>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <small class="invalid-feedback"><?= @$formErrors['seriesGenres'] ?></small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-group <?= !isset($formErrors['actors']) ?: 'has-danger' ?>">
+                        <div class="row">
+                            <p class="fw-bold">Sélectionner les acteurs</p>
+                            <?php foreach ($actorsList as $actors) { ?>
+                                <div class="col-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="<?= $actors->name ?>" name="actors[]" value="<?= $actors->id ?>">
+                                        <label class="form-check-label" for="<?= $actors->name ?>"><?= $actors->name ?></label>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <small class="invalid-feedback"><?= @$formErrors['actors'] ?></small>
                     </div>
                 </div>
                 <input type="submit" class="btn btn-primary" value="Envoyer" />

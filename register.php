@@ -13,12 +13,12 @@ require_once 'includes/header.php';
         <div class="col-12 text-center mt-5">
 
             <?php if (isset($formErrors['db'])) { ?>
-                <div class="col-md-6 alert alert-danger" role="alert">
+                <div class="col-md-6 alert alert-danger d-flex justify-content-center" role="alert">
                     <p class="text-center"><?= $formErrors['db'] ?></p>
                 </div>
             <?php } else { ?>
                 <?php if (isset($success)) { ?>
-                    <div class="col-md-6 alert alert-success" role="alert">
+                    <div class="col-md-6 alert alert-success d-flex justify-content-center" role="alert">
                         <p class="text-center"><?= $success ?></p>
                     </div>
                 <?php } ?>

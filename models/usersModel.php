@@ -5,7 +5,7 @@
  */
 class users extends database {
     // On utilise le "protected" pour faire en sorte que la classe patients hérite bien de la classe database
-    protected $db = NULL; 
+    public $db = NULL; 
     // Création des attributs qui permettront de stocker les données, on leur donne une valeur par défaut
     public $id = 0;
     public $username = '';
@@ -23,7 +23,7 @@ class users extends database {
      */
     public function __construct()
     {
-       $this->db = parent::__construct();
+       $this->db = parent::getInstance();
     }
 
     public function addUser() {

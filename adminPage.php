@@ -19,6 +19,8 @@ require_once 'includes/header.php';
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><a class="link-secondary" href="seriesList.php">Liste des séries</a></li>
                         <li class="list-group-item"><a class="link-secondary" href="addSeries.php">Ajouter une série</a></li>
+                        <li class="list-group-item"><a class="link-secondary" href="seriesSelect.php">Selectionner série</a></li>
+                        <li class="list-group-item"><a class="link-secondary" href="seriesSelect.php">Ajouter un acteur</a></li>
                     </ul>
                 </div>
             </div>

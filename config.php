@@ -45,8 +45,14 @@ define('EMPTY_ARTICLE_COMMENT_CONTENT', 'Votre commentaire ne peut être vide.')
 
 define('LOGGED_OUT', 'Vous devez être connecté afin de pouvoir commenter.');
 
+define('EMPTY_SELECTED_SERIES', 'Vous devez sélectionner au moins une série.');
+
+define('EMPTY_SERIES_GENRES', 'Vous devez sélectionner 1 ou plusieurs genres.');
+
+define ('EMPTY_SERIES_ACTORS', 'Vous devez sélectionner 1 ou plusieurs acteurs.');
+
 $regex = [
     'username' => '/^[a-zA-Z0-9]{3,50}$/',
     'id' => '/^[1-9][0-9]*$/',
-    'actors' => '/^[a-zA-Z0-9 \, \-\'\.]{3,255}$/'
+    'actors' => '/^[a-zA-ZÀ-ÿ0-9 \, \-\'\.\(\)]{3,255}$/'
 ]; // les regexs sont stockées ici pour être utilisées dans le fichier addPatientController

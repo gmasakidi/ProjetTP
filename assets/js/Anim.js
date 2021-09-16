@@ -51,7 +51,7 @@ function selectSeries() {
   }
 }
 
-var checkbox = document.querySelectorAll("input[type=checkbox]");
+var checkbox = document.querySelectorAll('.label__checkbox');
 for (let i = 0; i < checkbox.length; i++) {
   checkbox[i].addEventListener('click', selectSeries);
 }
@@ -103,5 +103,23 @@ if (deleteSeriesModal != null) {
     //Je stocke dans mon input la valeur stockée dans mon data-bs-test de mon bouton supprimer (l'id du patient ici)
     recipient.value = seriesId;
     seriesTitleRecipient.textContent = `La série nommée "${seriesTitle}" sera définitivement supprimée.`;
+  })
+}
+
+// sert à mettre dans une variable l'Id de la modal et du boutton
+var deleteArticleComment = document.getElementById('deleteArticleComment');
+// show.bs.modal est un évènement de modal bootstrap
+if (deleteArticleComment != null) {
+  deleteArticleComment.addEventListener('show.bs.modal', function (event) {
+    //Sert à récupérer les données du bouton, on stocke ça dans une variable. On ne peux pas toucher au event.relatedTarget sinon ça ne marche plus
+    var trigger = event.relatedTarget;
+    //Je done à la variable articleId la valeur de l'attribut correspondant sur mon bouton
+    var articleCommentId = trigger.getAttribute('data-bs-id');
+
+    //Je déclare l'endroit où je vais afficher mon id : ici, dans l'input 'idRecipient'
+    var recipient = deleteArticleComment.querySelector('#idRecipient'); // l'id de l'endroit où tu veux que tes données apparaissent
+
+    //Je stocke dans mon input la valeur stockée dans mon data-bs-test de mon bouton supprimer (l'id du patient ici)
+    recipient.value = articleCommentId;
   })
 }

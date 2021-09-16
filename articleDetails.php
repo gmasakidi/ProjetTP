@@ -4,6 +4,7 @@ session_start();
 require_once 'models/database.php';
 require_once 'models/articlesModel.php';
 require_once 'models/articlesCommentsModel.php';
+require_once 'config.php';
 require_once 'controllers/articleDetailsController.php';
 $title = $articleDetails->title;
 require_once 'includes/header.php';
@@ -12,7 +13,7 @@ require_once 'includes/header.php';
     <div class="row mt-5">
         <div class="col-12 mt-5 text-center">
             <h1 class=" fw-bold"><?= $articleDetails->title ?></h1>
-            <small class="lead fs-6">Publié le <?= $articleDetails->datefr ?> • Par <?= $_SESSION['username'] ?></small>
+            <small class="lead fs-6">Publié le <?= $articleDetails->datefr ?> • Par Gerard</small>
         </div>
     </div>
     <div class="row">
@@ -46,25 +47,52 @@ require_once 'includes/header.php';
         <?php } ?>
     </div>
     <div class="row">
-
-        <?php foreach ($articleCommentsList as $articleCommentsDetails) { ?>
+        <?php foreach ($commentsByArticle as $articleCommentsDetails) { ?>
             <div class="col-12">
-                <div class="card mb-3" style="max-width: 10rem;">
+                <div class="card mb-3" style="max-width: 30rem;">
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="https://www.e-xpertsolutions.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" class="img-fluid rounded-start" alt="...">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title"><?= $articleCommentsDetails->username ?></h5>
+                                <h5 class="card-title"><?= $articleCommentsDetails->username ?> :</h5>
                                 <p class="card-text"><?= $articleCommentsDetails->content ?></p>
                                 <p class="card-text"><small class="text-muted">Posté le <?= $articleCommentsDetails->datefr ?></small></p>
                             </div>
+                            <?php if (isset($_SESSION['id']) && $articleCommentsDetails->idUsers == $_SESSION['id']) { ?>
+                                <div class="card-footer text-end">
+                                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteArticleComment" data-bs-id="<?= $articleCommentsDetails->id ?>"><i class="bi bi-trash"></i></button>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
             </div>
         <?php } ?>
+        <div class="modal fade" id="deleteArticleComment" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Souhaitez-vous vraiment supprimer ce commentaire ?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <form method="post" action="articleDetails.php?id=<?= $_GET['id'] ?>">
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label"></label>
+                                <p>Le commentaire sera définitivement supprimé.</p>
+                                <input type="hidden" class="form-control" name="idRecipient" id="idRecipient" />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <button type="submit" class="btn btn-danger">Confirmer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

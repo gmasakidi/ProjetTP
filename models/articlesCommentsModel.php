@@ -5,7 +5,7 @@
  */
 class articlesComments extends database {
     // On utilise le "protected" pour faire en sorte que la classe articlesComments hérite bien de la classe database
-    protected $db = NULL; 
+    public $db = NULL; 
     // Création des attributs qui permettront de stocker les données, on leur donne une valeur par défaut
     public $id = 0;
     public $content = '';
@@ -23,7 +23,7 @@ class articlesComments extends database {
      */
     public function __construct()
     {
-        $this->db = parent::__construct();
+        $this->db = parent::getInstance();
     }
 
     public function addArticleComment() {
@@ -42,17 +42,27 @@ class articlesComments extends database {
         return $queryExecute->execute();
     }
 
-    public function getArticleCommentList() {
+    public function getCommentsByArticle() {
         // Ici les ":" indiquent que ce sont des marqueurs nominatifs, ces valeurs sont vides, on prépare l'entrée de future données, 
         // Le PARAM_STR va dire à la base de donnée de changer la valeur stockée en string. C'est une sécurité pour empêcher les attaques aux requêtes SQL.
-        $query = 'SELECT f5e2_articlescomments.id AS id, f5e2_articlescomments.content AS content, f5e2_articlescomments.date AS date, DATE_FORMAT(date, "%d/%m/%Y à %Hh%i") AS datefr, f5e2_users.username AS username
+        $query = 'SELECT f5e2_articlescomments.id AS id, f5e2_articlescomments.content AS content, f5e2_articlescomments.date AS date, DATE_FORMAT(date, "%d/%m/%Y à %Hh%i") AS datefr, f5e2_users.username AS username, f5e2_articlescomments.idUsers
         FROM f5e2_articlescomments
         INNER JOIN f5e2_users
         ON f5e2_articlescomments.idUsers = f5e2_users.id
         WHERE f5e2_articlescomments.idArticles = :id'; 
         $queryExecute = $this->db->prepare($query);
-        $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
+        //Je lie l'id que je trouve en paramètre d'URL à l'idArticles de ma table
+        $queryExecute->bindValue(':id', $this->idArticles, PDO::PARAM_INT);
         $queryExecute->execute();
         return $queryExecute->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function deleteArticleComment() {
+        $query = 'DELETE FROM f5e2_articlescomments
+        WHERE id = :id';
+        $queryExecute = $this->db->prepare($query);
+        $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);   
+        //On nous retourne ici un booléen     
+        return $queryExecute->execute();
     }
 }

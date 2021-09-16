@@ -11,12 +11,19 @@ if (!empty($_GET['id'])) {
         header('location:newsFeedPage.php');
         exit;
     }else{
-        $articleCommentsList = $articlesComments->getArticleCommentList();
-        
+        $commentsByArticle = $articlesComments->getCommentsByArticle();
     }
 }else {
     header('location:newsFeedPage.php');
     exit;
+}
+
+if(!empty($_POST['idRecipient'])) {
+    //On stocke le contenu de notre input idRecipient dans l'attribut id de la classe series
+    // Ici le contenu de cet input correspond à l'id de l'article que l'ont avait transmis à cet input grace au "data-base-id du bouton supprimer
+    $articlesComments->id = $_POST['idRecipient'];
+    //On stocke dans une variable le retour de la méthode deleteSeries, qui sera ici un booléan
+    $deleteArticleComment = $articlesComments->deleteArticleComment();
 }
 
 if(count($_POST) > 0){
@@ -43,10 +50,6 @@ if(count($_POST) > 0){
     if(count($formErrors) == 0){
         $articlesComments->addArticleComment();
     }
-
 }
 
-
 $articleDetails = $articles->getArticleDetails();
-
-var_dump($articleCommentsList);
