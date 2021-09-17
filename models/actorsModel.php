@@ -21,6 +21,20 @@ class actors extends database {
         $this->db = parent::getInstance();
     }
 
+    public function addActor() {
+        //Ici les ":" indiquent que ce sont des marqueurs nominatifs, ces valeurs sont vides, on prépare l'entrée de future données,
+        $query = 'INSERT INTO f5e2_actors (name)
+        VALUES (:name)';
+        //On utilise prepare lorsque l'on a des marqueurs nominatifs, mais elle n'execute pas la requete directement contrairement à query
+        $queryExecute = $this->db->prepare($query);
+        //Le bindvalue va attribuer les données aux marqueurs nominatifs
+        //Le PARAM_STR va dire à la base de donnée de changer la valeur stockée en string. C'est une sécurité pour empêcher les attaques aux requêtes SQL.
+        $queryExecute->bindValue(':name', $this->name, PDO::PARAM_STR);
+        //L'execute va éxécuter la requête préparée avec les valeurs données dans le bindvalue qui elles seront tirées de nos inputs
+        //On retourne l'execute qui nous renvoi ici true ou false (booléan) car cette méthode ne nous permet pas de récuperer des infos (fetch ou fetch all --> le return nous renverrait alors un tableau)
+        return $queryExecute->execute();
+    }
+
     public function getActorsList(){
         $query = 'SELECT  id, name
         FROM f5e2_actors';

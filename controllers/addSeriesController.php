@@ -9,12 +9,12 @@ $seriesGenresList = $seriesGenres->getseriesGenresList();
 $actors = new actors();
 $actorsList = $actors->getActorsList();
 
-
 if (count($_POST) > 0) {
 
-    //J'appelle ma classe
+    //J'appelle mes classes, j'instancie es objets
     $series = new series();
     $seriesHaveGenres = new seriesHaveGenres();
+    $seriesHaveActors = new seriesHaveActors();
     // J'initialise mon tableau formErrors qui contiendra tous mes messages d'erreurs
     $formErrors = [];
 
@@ -77,40 +77,53 @@ if (count($_POST) > 0) {
     }
 
     if(!empty($_POST['seriesGenres'])){
-        //Je stocke dans une variable les éléments sélectionnés dans cet input
+        //Je stocke dans une variable les éléments sélectionnés dans cet input qui ici me renvoie un tableau
         $seriesGenres = $_POST['seriesGenres'];
     }else{
         $formErrors['seriesGenres'] = EMPTY_SERIES_GENRES;
     }
 
     if(!empty($_POST['actors'])){
-        //Je stocke dans une variable les éléments sélectionnés dans cet input
-        $seriesGenres = $_POST['actors'];
+        //Je stocke dans une variable les éléments sélectionnés dans cet input qui ici me renvoie un tableau
+        $seriesActors = $_POST['actors'];
     }else{
         $formErrors['actors'] = EMPTY_SERIES_ACTORS;
     }
 
+    //Si aucune erreur n'est trouvée
     if(count($formErrors) == 0){
-        //Active un mode erreur qui vérifie si une erreur a eu lieu
+        //Active un mode qui vérifie si une erreur a eu lieu
+        //On utilise ici la table series car c'est elle dont les autres tables sont dépendantes
         $series->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //On lui demande d'essayer ce qui suit
         try {
-            //Dis au PHP que je démarre la transaction dans ma base de donnée
+            //Dis au PHP que je démarre la transaction dans ma base de donnée sur ma classe series
             $series->db->beginTransaction();
-            var_dump($series);
             //Je lance ma méthode pour l'ajout de série
             $addSeries = $series->addSeries();
-            //Je stocke dans l'attribut idSeries de la table seriesHaveGenres, l'id de la série que j'ajoute
-            $seriesHaveGenres->idSeries = $series->db->lastInsertId();
+            //Je stocke dans l'attribut idSeries de la table seriesHaveGenres
+            //Ainsi que dans l'attribut idSeries de la table seriesHaveActors, l'id de la série que j'ajoute juste au dessus
+            $seriesHaveGenres->idSeries = $seriesHaveActors->idSeries = $series->db->lastInsertId();
+
+            //Etant donné que mon checkbox est un tableau, je dois faire un foreach pour récupérer les infos de chaque cases cochées
             foreach ($seriesGenres as $genres){
-                //Je stocke dans l'attribut idseriesGenres de la table seriesHaveGenres, l'id récupéré dans mes checkbox
+                //Je stocke dans l'attribut idseriesGenres de la table seriesHaveGenres, l'id récupéré dans les "value" de mes checkbox
                 $seriesHaveGenres->idSeriesGenres = $genres;
                 //Je lance ma méthode pour remplir ma table seriesHaveGenres
                 $seriesHaveGenres->addGenreToSeries();
             }
+
+            //Etant donné que mon checkbox est un tableau, je dois faire un foreach pour récupérer les infos de chaque cases cochées            
+            foreach($seriesActors as $actors){
+                //Je stocke dans l'attribut idActors de la table seriesHaveActors, l'id récupéré dans mes checkbox
+                $seriesHaveActors->idActors = $actors;
+                //Je lance ma méthode pour remplir ma table seriesHaveActors
+                $seriesHaveActors->addActorsToSeries();
+            }
+
             //Si tout s'est bien passé, valide la transaction et l'inscrit dans la bdd
             $series->db->commit();
         } catch (PDOException $error) {
-            var_dump($formErrors);
             //Si la transation attrape une erreur, retire ce qui vient d'être entré dans la bdd
             $series->db->rollBack();
             die ($error->getMessage());

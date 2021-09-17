@@ -51,8 +51,12 @@ define('EMPTY_SERIES_GENRES', 'Vous devez sélectionner 1 ou plusieurs genres.')
 
 define ('EMPTY_SERIES_ACTORS', 'Vous devez sélectionner 1 ou plusieurs acteurs.');
 
+define ('EMPTY_ACTOR', 'Le nom de l\'acteur est obligatoire.');
+define ('INVALID_ACTOR', 'Le nom de l\'acteur est incorrect.');
+
 $regex = [
     'username' => '/^[a-zA-Z0-9]{3,50}$/',
     'id' => '/^[1-9][0-9]*$/',
-    'actors' => '/^[a-zA-ZÀ-ÿ0-9 \, \-\'\.\(\)]{3,255}$/'
+    'actors' => '/^[a-zA-ZÀ-ÿ0-9 \, \-\'\.\(\)]{3,255}$/',
+    'seriesActor' => '/^[a-zA-ZÀ-ÿ0-9 \-\'\.\(\)]{2,100}$/'
 ]; // les regexs sont stockées ici pour être utilisées dans le fichier addPatientController

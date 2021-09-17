@@ -35,4 +35,13 @@ class seriesHaveActors extends database{
         //On retourne l'execute qui nous renvoi ici true ou false (booléan) car cette méthode ne nous permet pas de récuperer des infos (fetch ou fetch all --> le return nous renverrait alors un tableau)
         return $queryExecute->execute();
     }
+
+    public function deleteActorsFromSeries() {
+        $query = 'DELETE FROM f5e2_serieshaveactors
+        WHERE idSeries = :idSeries';
+        $queryExecute = $this->db->prepare($query);
+        $queryExecute->bindValue(':idSeries', $this->idSeries, PDO::PARAM_INT);   
+        //On nous retourne ici un booléen     
+        return $queryExecute->execute();
+    }
 }

@@ -3,6 +3,15 @@
 //J'appelle ma classe - j'instancie
 $series = new series();
 
+$status = new status();
+$statusList = $status->getStatusList();
+
+$seriesGenres = new seriesGenres();
+$seriesGenresList = $seriesGenres->getseriesGenresList();
+
+$actors = new actors();
+$actorsList = $actors->getActorsList();
+
 if (!empty($_GET['id'])) {
     //Je stocke l'id de mon URL dans l'attribut id de ma classe series
     $series->id = $_GET['id'];
@@ -13,13 +22,13 @@ if (!empty($_GET['id'])) {
         header('location:seriesList.php');
         exit;
     }
-}else {
+} else {
     header('location:seriesList.php');
     exit;
 }
 
-if (count($_POST) > 0) {
-
+//Si le $_POST de mon bouton existe, c'est a dire que mon bouton a envoyé des données
+if (isset($_POST['seriesButton'])) {
     // J'initialise mon tableau formErrors qui contiendra tous mes messages d'erreurs
     $formErrors = [];
 
@@ -44,7 +53,7 @@ if (count($_POST) > 0) {
     } else {
         $formErrors['creators'] = EMPTY_CREATORS;
     }
-    
+
     if (!empty($_POST['year'])) {
         $series->year = $_POST['year'];
     } else {
@@ -63,7 +72,7 @@ if (count($_POST) > 0) {
 
         if (in_array($posterExtension, $authorizedExtensions)) {
             if (move_uploaded_file($_FILES['poster']['tmp_name'], 'assets/uploads/Series/' . $_FILES['poster']['name'])) {
-                chmod('uploads/Series/' . $_FILES['poster']['name'], 0644);
+                chmod('assets/uploads/Series/' . $_FILES['poster']['name'], 0644);
                 $series->photo = 'assets/uploads/Series/' . $_FILES['poster']['name'];
             } else {
                 $formErrors['poster'] = 'Une erreur est survenue lors de l\'envoi.';
@@ -87,6 +96,57 @@ if (count($_POST) > 0) {
         } else {
             $formErrors['db'] = 'Une erreur est survenue.';
         }
+    }
+}
+
+if (isset($_POST['seriesGenresButton'])) {
+    //J'appelle mes classes, j'instancie es objets
+    $seriesHaveGenres = new seriesHaveGenres();
+    // J'initialise mon tableau formErrors qui contiendra tous mes messages d'erreurs
+    $formErrors = [];
+
+    if (!empty($_POST['seriesGenres'])) {
+        //Je stocke dans mon attribut idSeries de ma classe seriesHaveGenres, le l'id stocké dans mon paramètre d'url (qui correspond à l'id de ma série)
+        $seriesHaveGenres->idSeries = $_GET['id'];
+        //J'appelle la méthode qui supprimera les genre associés à cette série
+        $seriesHaveGenres->deleteGenreToSeries();
+        //Je stocke dans une variable les éléments sélectionnés dans cet input qui ici me renvoie un tableau
+        $seriesGenres = $_POST['seriesGenres'];
+        //Etant donné que mon checkbox est un tableau, je dois faire un foreach pour récupérer les infos de chaque cases cochées
+        foreach ($seriesGenres as $genres) {
+            //Je stocke dans l'attribut idseriesGenres de la classe seriesHaveGenres, l'id récupéré dans les "value" de mes checkbox
+            $seriesHaveGenres->idSeriesGenres = $genres;
+            //Je lance ma méthode pour remplir ma table seriesHaveGenres
+            $seriesHaveGenres->addGenreToSeries();
+        }
+    } else {
+        $formErrors['seriesGenres'] = EMPTY_SERIES_GENRES;
+    }
+}
+
+if (isset($_POST['seriesActorsButton'])) {
+    //J'insctancie mon objet
+    $seriesHaveActors = new seriesHaveActors();
+
+    // J'initialise mon tableau formErrors qui contiendra tous mes messages d'erreurs
+    $formErrors = [];
+
+    if (!empty($_POST['actors'])) {
+        //Je stocke dans mon attribut idSeries de ma classe seriesHaveActors, le l'id stocké dans mon paramètre d'url (qui correspond à l'id de ma série)
+        $seriesHaveActors->idSeries = $_GET['id'];
+        //J'appelle la méthode qui supprimera les acteurs associés à cette série
+        $seriesHaveActors->deleteActorsFromSeries();
+        //Je stocke dans une variable les éléments sélectionnés dans cet input qui ici me renvoie un tableau
+        $seriesActors = $_POST['actors'];
+        //Etant donné que mon checkbox est un tableau, je dois faire un foreach pour récupérer les infos de chaque cases cochées            
+        foreach ($seriesActors as $actors) {
+            //Je stocke dans l'attribut idActors de la classe seriesHaveActors, l'id récupéré dans les "value" de mes checkbox
+            $seriesHaveActors->idActors = $actors;
+            //Je lance ma méthode pour remplir ma table seriesHaveActors
+            $seriesHaveActors->addActorsToSeries();
+        }
+    }else{
+        $formErrors['actors'] = EMPTY_SERIES_ACTORS;
     }
 }
 
