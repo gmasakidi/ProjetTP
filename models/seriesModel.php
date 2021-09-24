@@ -1,4 +1,5 @@
 <?php
+
 /**
  * On crée une classe series qui hérite de la classe database
  * On pourra accéder à tous les attributs et toutes les méthodes protégées de database
@@ -25,10 +26,11 @@ class series extends database {
      */
     public function __construct()
     {
-       $this->db = parent::getInstance();
+        $this->db = parent::getInstance();
     }
 
-    public function addSeries() {
+    public function addSeries()
+    {
         //Ici les ":" indiquent que ce sont des marqueurs nominatifs, ces valeurs sont vides, on prépare l'entrée de future données,
         $query = 'INSERT INTO f5e2_series (title, synopsis, creators, year, photo, idStatus)
         VALUES (:title, :synopsis, :creators, :year, :photo, :idStatus)';
@@ -47,68 +49,96 @@ class series extends database {
         return $queryExecute->execute();
     }
 
-        //Permet de récupérer la liste des articles dans la base de donnée ainsi que leur catégorie
-        public function getSeriesList(){
-            $query = 'SELECT f5e2_series.id AS id, f5e2_series.title as title, f5e2_series.synopsis AS synopsis, f5e2_series.creators AS creators, f5e2_series.year AS year, f5e2_status.status AS status, f5e2_series.photo AS photo
+    //Permet de récupérer la liste des articles dans la base de donnée ainsi que leur catégorie
+    public function getSeriesList()
+    {
+        $query = 'SELECT f5e2_series.id AS id, f5e2_series.title as title, f5e2_series.synopsis AS synopsis, f5e2_series.creators AS creators, f5e2_series.year AS year, f5e2_status.status AS status, f5e2_series.photo AS photo
             FROM f5e2_series
             INNER JOIN f5e2_status
             ON f5e2_series.idStatus = f5e2_status.id';
-            $queryExecute = $this->db->query($query);
-            //Ici le fetchAll est utilisé car on veut prendre toutes les lignes correspondant à cette requête
-            //Cette méthode me renvoie donc un array
-            $queryResult = $queryExecute->fetchAll(PDO::FETCH_OBJ);
-            return $queryResult;
-        }
-    
-        //La méthode checkIfUserExists permet de vérifier si un utilisateur existe dans la bdd
-        public function checkIfSeriesExists()
-        {
-            $query = 'SELECT COUNT(id) AS count
+        $queryExecute = $this->db->query($query);
+        //Ici le fetchAll est utilisé car on veut prendre toutes les lignes correspondant à cette requête
+        //Cette méthode me renvoie donc un array
+        $queryResult = $queryExecute->fetchAll(PDO::FETCH_OBJ);
+        return $queryResult;
+    }
+
+    //La méthode checkIfUserExists permet de vérifier si un utilisateur existe dans la bdd
+    public function checkIfSeriesExists()
+    {
+        $query = 'SELECT COUNT(id) AS count
             FROM f5e2_series
             WHERE id = :id';
-            $queryExecute = $this->db->prepare($query);
-            $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
-            $queryExecute->execute();
-            return $queryExecute->fetch(PDO::FETCH_OBJ);
-        }
-    
-        public function getSeriesDetails() {
-            // Ici les ":" indiquent que ce sont des marqueurs nominatifs, ces valeurs sont vides, on prépare l'entrée de future données, 
-            // Le PARAM_STR va dire à la base de donnée de changer la valeur stockée en string. C'est une sécurité pour empêcher les attaques aux requêtes SQL.
-            $query = 'SELECT f5e2_series.id AS id, f5e2_series.title as title, f5e2_series.synopsis AS synopsis, f5e2_series.creators AS creators, f5e2_series.year AS year, f5e2_status.status AS status, f5e2_series.photo AS photo
+        $queryExecute = $this->db->prepare($query);
+        $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $queryExecute->execute();
+        return $queryExecute->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function getSeriesDetails()
+    {
+        // Ici les ":" indiquent que ce sont des marqueurs nominatifs, ces valeurs sont vides, on prépare l'entrée de future données, 
+        // Le PARAM_STR va dire à la base de donnée de changer la valeur stockée en string. C'est une sécurité pour empêcher les attaques aux requêtes SQL.
+        $query = 'SELECT f5e2_series.id AS id, f5e2_series.title as title, f5e2_series.synopsis AS synopsis, f5e2_series.creators AS creators, f5e2_series.year AS year, f5e2_status.status AS status, f5e2_series.photo AS photo
             FROM f5e2_series
             INNER JOIN f5e2_status
             ON f5e2_series.idStatus = f5e2_status.id
             WHERE f5e2_series.id = :id';
-            $queryExecute = $this->db->prepare($query);
-            $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
-            $queryExecute->execute();
-            //On utilise ici le 'fetch' car on ne cherche à prendre qu'une seule ligne, celle où l'id correspond
-            return $queryExecute->fetch(PDO::FETCH_OBJ);
-        }
-    
-        //Permet de modifier un article dans la base de donnée ainsi que leur catégorie
-        public function updateSeries() {
-            $query = 'UPDATE f5e2_series 
+        $queryExecute = $this->db->prepare($query);
+        $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $queryExecute->execute();
+        //On utilise ici le 'fetch' car on ne cherche à prendre qu'une seule ligne, celle où l'id correspond
+        return $queryExecute->fetch(PDO::FETCH_OBJ);
+    }
+
+    //Permet de modifier un article dans la base de donnée ainsi que leur catégorie
+    public function updateSeries()
+    {
+        $query = 'UPDATE f5e2_series 
             SET title = :title, synopsis = :synopsis, creators = :creators, year = :year, photo = :photo, idStatus = :idStatus
             WHERE id = :id';
-            $queryExecute = $this->db->prepare($query);
-            $queryExecute->bindValue(':title', $this->title, PDO::PARAM_STR);
-            $queryExecute->bindValue(':synopsis', $this->synopsis, PDO::PARAM_STR);
-            $queryExecute->bindValue(':creators', $this->creators, PDO::PARAM_STR);
-            $queryExecute->bindValue(':year', $this->year, PDO::PARAM_INT);
-            $queryExecute->bindValue(':photo', $this->photo, PDO::PARAM_STR);
-            $queryExecute->bindValue(':idStatus', $this->idStatus, PDO::PARAM_INT);
-            $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
-            return $queryExecute->execute();
-        }
-    
-        public function deleteSeries() {
-            $query = 'DELETE FROM f5e2_series
+        $queryExecute = $this->db->prepare($query);
+        $queryExecute->bindValue(':title', $this->title, PDO::PARAM_STR);
+        $queryExecute->bindValue(':synopsis', $this->synopsis, PDO::PARAM_STR);
+        $queryExecute->bindValue(':creators', $this->creators, PDO::PARAM_STR);
+        $queryExecute->bindValue(':year', $this->year, PDO::PARAM_INT);
+        $queryExecute->bindValue(':photo', $this->photo, PDO::PARAM_STR);
+        $queryExecute->bindValue(':idStatus', $this->idStatus, PDO::PARAM_INT);
+        $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
+        return $queryExecute->execute();
+    }
+
+    public function deleteSeries()
+    {
+        $query = 'DELETE FROM f5e2_series
             WHERE id = :id';
+        $queryExecute = $this->db->prepare($query);
+        $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
+        //On nous retourne ici un booléen     
+        return $queryExecute->execute();
+    }
+
+    public function getSeriesResults($search = '')
+    {
+        $query = 'SELECT title, synopsis
+        FROM f5e2_series
+        ';
+        if (!empty($search)) {
+            // ici on compare :search a lastname et firstname puis on retourne les resultat qui correspond
+            $query .= 'WHERE title LIKE :search OR synopsis LIKE :search';
+            // on fait prepare($query) car on recupere une valeur pour apres la comparé a notre DB
             $queryExecute = $this->db->prepare($query);
-            $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);   
-            //On nous retourne ici un booléen     
-            return $queryExecute->execute();
+            $queryExecute->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
+            $queryExecute->execute();
+        } else {
+            $queryExecute = $this->db->query($query);
+            $queryExecute->execute();
         }
+
+        // le $this est l'objet qui appelle la methode , le db est l'attribut créé plus haut qui contient notre objet PDO 
+        // le query() est une methode de PHP qui permet d'executer une requete SQL 
+        $queryResult = $queryExecute->fetchAll(PDO::FETCH_OBJ);
+        // fetchAll est une methode de l'objet "queryExecute"  permettant de recupere plusieur ligne
+        return $queryResult;
+    }
 }

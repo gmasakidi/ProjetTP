@@ -1,6 +1,10 @@
 <?php
-// J'appelle ma classe articles - j'instancie mon objet
+// J'appelle mes classes articles et categories - j'instancie mon objet
 $articles = new articles();
+$categories = new categories();
+
+//J'appelle la méthode qui va permettre de remplir mon select catégories
+$categoriesList = $categories->getCategoriesList();
 
 if (!empty($_GET['id'])) {
     //Je stocke l'id de mon URL dans l'attribut id de ma classe articles
@@ -18,7 +22,7 @@ if (!empty($_GET['id'])) {
 }
 
 if (count($_POST) > 0) {
-    //J'initialise mon tableau formErros qui stockera mes essages d'erreurs
+    //J'initialise mon tableau formErrors qui stockera mes essages d'erreurs
     $formErrors = [];
 
     if (!empty($_POST['articleTitle'])) {

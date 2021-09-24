@@ -24,7 +24,7 @@ if (count($_POST) > 0) {
 
     /**
      * Si mon champs password n'est pas vide, je vérifie ensuite que le nom d'utilisateur est bien entré et qu'il existe bien dans la bdd.
-     * Si c'est le cas alors je lance mas méthode getHashByUsername() qui me permet de prendre le mot de passe haché enregistré dans ma bdd
+     * Si c'est le cas alors je lance ma méthode getHashByUsername() qui me permet de prendre le mot de passe haché enregistré dans ma bdd
      * concernant cet utilisateur.
      * Si le contenu de mon champs password ne correspond pas mot de passe dé-haché par la fonction password_verify, alors j'informe mon utilisateur
      * que le nom d'utilisateur ou le mot de passe est invalide.
@@ -61,3 +61,4 @@ if (isset($_SESSION['username'])) {
     header('location:userProfile.php');
     exit;
 }
+

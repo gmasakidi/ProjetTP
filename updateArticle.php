@@ -5,6 +5,7 @@ $title = 'Modifier l\'article';
 require_once 'includes/header.php';
 require_once 'models/database.php';
 require_once 'models/articlesModel.php';
+require_once 'models/categoriesModel.php';
 require_once 'config.php';
 require_once 'controllers/updateArticleController.php';
 ?>
@@ -52,9 +53,9 @@ require_once 'controllers/updateArticleController.php';
                         <label for="articleCategory" class="form-label">Catégorie (tag) </label>
                         <select class="form-select <?= !isset($formErrors['articleCategory']) ?: 'is-invalid' ?>" id="articleCategory" name="articleCategory">
                             <option selected disabled>Choisir une catégorie d'article</option>
-                            <option value="1">Séries</option>
-                            <option value="2">Nouveauté</option>
-                            <option value="3">Streaming</option>
+                            <?php foreach($categoriesList as $categoriesDetails){ ?>
+                                <option value="<?= $categoriesDetails->id ?>"><?= $categoriesDetails->name ?></option>
+                           <?php } ?>
                         </select>
                         <small class="invalid-feedback"><?= @$formErrors['articleCategory'] ?></small>
                     </div>

@@ -133,7 +133,6 @@ CREATE TABLE f5E2_articlesComments(
         id               Int Auto_increment NOT NULL ,
         content          Text NOT NULL ,
         date             Datetime NOT NULL ,
-        rate             Int NOT NULL ,
         idUsers    Int NOT NULL ,
         idArticles Int NOT NULL
 	,CONSTRAINT articlesComments_PK PRIMARY KEY (id)

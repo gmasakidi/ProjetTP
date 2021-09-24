@@ -68,7 +68,13 @@ class articles extends database {
     public function getArticleDetails() {
         // Ici les ":" indiquent que ce sont des marqueurs nominatifs, ces valeurs sont vides, on prépare l'entrée de future données, 
         // Le PARAM_STR va dire à la base de donnée de changer la valeur stockée en string. C'est une sécurité pour empêcher les attaques aux requêtes SQL.
-        $query = 'SELECT f5e2_articles.id AS id, f5e2_articles.date as date, f5e2_articles.title AS title, f5e2_articles.content AS content, f5e2_articles.photo AS photo, f5e2_categories.name AS category, DATE_FORMAT(date, "%d/%m/%Y à %Hh%i") as datefr
+        $query = 'SELECT f5e2_articles.id AS id, 
+        f5e2_articles.date As date, 
+        f5e2_articles.title AS title, 
+        f5e2_articles.content AS content, 
+        f5e2_articles.photo AS photo, 
+        f5e2_categories.name AS category, 
+        DATE_FORMAT(date, "%d/%m/%Y à %Hh%i") AS datefr
         FROM f5e2_articles
         INNER JOIN f5e2_categories
         ON f5e2_articles.idCategories = f5e2_categories.id
@@ -102,5 +108,4 @@ class articles extends database {
         //On nous retourne ici un booléen     
         return $queryExecute->execute();
     }
-
 }
