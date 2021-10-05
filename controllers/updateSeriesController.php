@@ -1,6 +1,6 @@
 <?php
 
-//J'appelle ma classe - j'instancie
+//J'appelle mes classes - j'instancie mes objets
 $series = new series();
 
 $status = new status();
@@ -96,6 +96,31 @@ if (isset($_POST['seriesButton'])) {
         } else {
             $formErrors['db'] = 'Une erreur est survenue.';
         }
+    }
+}
+
+if(isset($_POST['seriesSeasonsButton'])){
+    //J'appelle ma classe seasons
+    $seasons = new seasons;
+    //J'initialise mon tableau formErrors
+    $formErrors = [];
+
+    if(!empty($_POST['seasons'])){
+        //Je stocke dans mon attribut idSeries de ma classe seasons, le l'id stocké dans mon paramètre d'url (qui correspond à l'id de ma série)
+        $seasons->idSeries = $_GET['id'];
+        //J'appelle la méthode qui supprimera les saisons associés à cette série
+        $seasons->deleteSeasonsToSeries();
+        //Je stocke dans une variable la valeur récupérée dans mon select
+        $seasonsNumber = $_POST['seasons'];
+        //je fais une boucle allant de 1 jusqu'au nombre de saisons selectionné dans le select de ma vue
+        for($SeriesSeasons = 1; $SeriesSeasons <= $seasonsNumber; $SeriesSeasons++){
+            //Je stocke dans l'attribut seasonNumber de ma classe seasons, la value récupéré dans mon select
+            $seasons->seasonNumber = $SeriesSeasons;
+            //Je lance ma méthode pour ajouter la saison
+            $seasons->addSeason();
+        }
+    }else{
+        $formErrors['seasons'] = EMPTY_SEASONS;
     }
 }
 

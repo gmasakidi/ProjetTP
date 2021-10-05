@@ -1,7 +1,7 @@
 <?php
-//Si la session de cet utilisateur existe, alors je le redirige vers la page de connexion (car il a déjà un compte)
+//Si la session de cet utilisateur existe, alors je le redirige vers la page profil (car il a déjà un compte et est connecté)
 if (isset($_SESSION['username'])) {
-    header('location: login.php');
+    header('location: userProfile.php');
     exit;
 }
 //Si mon formulaire a été envoyé

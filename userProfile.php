@@ -9,9 +9,9 @@ $title = 'Profil';
 require_once 'includes/header.php';
 ?>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-2 p-0 mt-5">
+<div class="container-fluid userPage">
+    <div class="row userPage">
+        <div class="col-2 p-0 mt-5 userPage">
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light ms-0 profileSidebar">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <svg class="bi me-2" width="40" height="32">

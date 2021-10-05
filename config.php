@@ -54,6 +54,12 @@ define ('EMPTY_SERIES_ACTORS', 'Vous devez sélectionner 1 ou plusieurs acteurs.
 define ('EMPTY_ACTOR', 'Le nom de l\'acteur est obligatoire.');
 define ('INVALID_ACTOR', 'Le nom de l\'acteur est incorrect.');
 
+define('EMPTY_SEARCH', 'Vous devez entrer le titre d\'une série.');
+
+define('EMPTY_SEASONS', 'Le nombre de saisons est obligatoire.');
+
+define('EMPTY_PROGRESS', 'Vous devez séléctionner une saison. ');
+
 $regex = [
     'username' => '/^[a-zA-Z0-9]{3,50}$/',
     'id' => '/^[1-9][0-9]*$/',

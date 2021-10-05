@@ -157,5 +157,4 @@ class users extends database {
         $queryExecute->execute();
         return $queryExecute->fetch(PDO::FETCH_OBJ);
     }
-
 }

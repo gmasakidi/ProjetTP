@@ -13,7 +13,7 @@
 
 <!-- Si on se trouve sur la page index alors on ne fait rien, sinon on applique la classe signInBody -->
 
-<body <?= $_SERVER['PHP_SELF'] == '/Projet TP/index.php' || '/Projet TP/userProfile.php' ?: 'class="signInBody"'; ?>>
+<body <?= $_SERVER['PHP_SELF'] == 'ProjetTP/login.php' || 'ProjetTP/register.php' ?: 'class="signInBody"'; ?>>
     <header>
         <!--Début de la navbar-->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">

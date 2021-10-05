@@ -8,6 +8,7 @@ require_once 'models/seriesGenresModel.php';
 require_once 'models/actorsModel.php';
 require_once 'models/seriesHaveGenresModel.php';
 require_once 'models/seriesHaveActorsModel.php';
+require_once 'models/seasonsModel.php';
 require_once 'config.php';
 require_once 'controllers/updateSeriesController.php';
 $title = 'Modifier la série';
@@ -83,6 +84,23 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 <input type="submit" class="btn btn-primary" name="seriesButton" value="Envoyer" />
+            </form>
+        </div>
+        <div class="col-12 mt-4 d-flex justify-content-center">
+            <form action="updateSeries.php?id=<?= $_GET['id'] ?>" method="post" class="w-50 mb-5">
+            <div class="mb-3">
+                    <div class="form-group <?= !isset($formErrors['seasons']) ?: 'has-danger' ?>">
+                    <label for="seasons" class="form-label">Nombre de saisons</label>
+                        <select class="form-select <?= !isset($formErrors['seasons']) ?: 'is-invalid' ?>" id="seasons" name="seasons">
+                            <option selected disabled>Sélectionner le nombre de saisons</option>
+                            <?php for($seasons = 1; $seasons <= 36; $seasons++) { ?>
+                                <option value="<?= $seasons ?>"><?= $seasons ?></option>
+                            <?php } ?>
+                        </select>
+                        <small class="invalid-feedback"><?= @$formErrors['seasons'] ?></small>
+                    </div>
+                </div>
+                <input type="submit" name="seriesSeasonsButton" class="btn btn-primary" value="Envoyer" />
             </form>
         </div>
         <div class="col-12 mt-4 d-flex justify-content-center">

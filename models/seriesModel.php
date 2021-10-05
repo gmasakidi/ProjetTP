@@ -120,12 +120,12 @@ class series extends database {
 
     public function getSeriesResults($search = '')
     {
-        $query = 'SELECT title, synopsis
+        $query = 'SELECT id, title, synopsis, photo, COUNT(id) AS count
         FROM f5e2_series
         ';
         if (!empty($search)) {
             // ici on compare :search a lastname et firstname puis on retourne les resultat qui correspond
-            $query .= 'WHERE title LIKE :search OR synopsis LIKE :search';
+            $query .= 'WHERE title LIKE :search';
             // on fait prepare($query) car on recupere une valeur pour apres la comparé a notre DB
             $queryExecute = $this->db->prepare($query);
             $queryExecute->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);

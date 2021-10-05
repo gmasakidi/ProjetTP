@@ -8,6 +8,7 @@ require_once 'models/seriesHaveGenresModel.php';
 require_once 'models/statusModel.php';
 require_once 'models/actorsModel.php';
 require_once 'models/seriesHaveActorsModel.php';
+require_once 'models/seasonsModel.php';
 require_once 'config.php';
 require_once 'controllers/addSeriesController.php';
 $title = 'Ajouter une série';
@@ -65,6 +66,18 @@ require_once 'includes/header.php';
                             <?php } ?>
                         </select>
                         <small class="invalid-feedback"><?= @$formErrors['seriesStatus'] ?></small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-group <?= !isset($formErrors['seasons']) ?: 'has-danger' ?>">
+                    <label for="seasons" class="form-label">Nombre de saisons</label>
+                        <select class="form-select <?= !isset($formErrors['seasons']) ?: 'is-invalid' ?>" id="seasons" name="seasons">
+                            <option selected disabled>Sélectionner le nombre de saisons</option>
+                            <?php for($seasons = 1; $seasons <= 36; $seasons++) { ?>
+                                <option value="<?= $seasons ?>"><?= $seasons ?></option>
+                            <?php } ?>
+                        </select>
+                        <small class="invalid-feedback"><?= @$formErrors['seasons'] ?></small>
                     </div>
                 </div>
                 <div class="mb-3">

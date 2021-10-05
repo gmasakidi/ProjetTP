@@ -17,9 +17,9 @@ require_once 'includes/header.php';
 
                     <div class="container">
                         <div class="carousel-caption text-start">
-                            <h1>Example headline.</h1>
-                            <p>Some representative placeholder content for the first slide of the carousel.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+                            <h1>Des centaines de séries disponibles</h1>
+                            <p>Ne vous souciez plus de votre avancement, laissez nous faire !</p>
+                            <p><a class="btn btn-lg btn-primary" href="register.php">Inscrivez-vous maintenant</a></p>
                         </div>
                     </div>
                 </div>
@@ -28,9 +28,9 @@ require_once 'includes/header.php';
 
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1>Another example headline.</h1>
-                            <p>Some representative placeholder content for the second slide of the carousel.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                            <h1>Secrets de tournage</h1>
+                            <p>Les 10 plus gros secrets de la série "The Big Bang Theory"</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">En savoir plus...</a></p>
                         </div>
                     </div>
                 </div>
@@ -39,9 +39,9 @@ require_once 'includes/header.php';
 
                     <div class="container">
                         <div class="carousel-caption text-end">
-                            <h1>One more for good measure.</h1>
-                            <p>Some representative placeholder content for the third slide of this carousel.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+                            <h1>La saison 3 approche</h1>
+                            <p>Découvrez la bande-annonce complètement dingue de la nouvelle saison !</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">En savoir plus...</a></p>
                         </div>
                     </div>
                 </div>
@@ -122,6 +122,6 @@ require_once 'includes/header.php';
         </div>
     </main>
 
-<?php 
+<?php
 require_once 'includes/footer.php';
 ?>

@@ -15,6 +15,8 @@ if (count($_POST) > 0) {
     $series = new series();
     $seriesHaveGenres = new seriesHaveGenres();
     $seriesHaveActors = new seriesHaveActors();
+    $seasons = new seasons();
+
     // J'initialise mon tableau formErrors qui contiendra tous mes messages d'erreurs
     $formErrors = [];
 
@@ -76,6 +78,12 @@ if (count($_POST) > 0) {
         $formErrors['seriesStatus'] = EMPTY_SERIES_STATUS;
     }
 
+    if(!empty($_POST['seasons'])) {
+        $seasonsNumber = $_POST['seasons'];
+    } else {
+        $formErrors['seasons'] = EMPTY_SEASONS;
+    }
+
     if(!empty($_POST['seriesGenres'])){
         //Je stocke dans une variable les éléments sélectionnés dans cet input qui ici me renvoie un tableau
         $seriesGenres = $_POST['seriesGenres'];
@@ -103,7 +111,7 @@ if (count($_POST) > 0) {
             $addSeries = $series->addSeries();
             //Je stocke dans l'attribut idSeries de la table seriesHaveGenres
             //Ainsi que dans l'attribut idSeries de la table seriesHaveActors, l'id de la série que j'ajoute juste au dessus
-            $seriesHaveGenres->idSeries = $seriesHaveActors->idSeries = $series->db->lastInsertId();
+            $seriesHaveGenres->idSeries = $seriesHaveActors->idSeries = $seasons->idSeries = $series->db->lastInsertId();
 
             //Etant donné que mon checkbox est un tableau, je dois faire un foreach pour récupérer les infos de chaque cases cochées
             foreach ($seriesGenres as $genres){
@@ -119,6 +127,14 @@ if (count($_POST) > 0) {
                 $seriesHaveActors->idActors = $actors;
                 //Je lance ma méthode pour remplir ma table seriesHaveActors
                 $seriesHaveActors->addActorsToSeries();
+            }
+
+            //je fais une boucle allant de 1 jusqu'au nombre de saisons selectionné dans le select de ma vu
+            for($SeriesSeasons = 1; $SeriesSeasons <= $seasonsNumber; $SeriesSeasons++){
+                //Je stocke dans l'attribut seasonNumber de ma classe seasons, la value récupéré dans mon select
+                $seasons->seasonNumber = $SeriesSeasons;
+                //Je lance ma méthode pour ajouter la saison
+                $seasons->addSeason();
             }
 
             //Si tout s'est bien passé, valide la transaction et l'inscrit dans la bdd

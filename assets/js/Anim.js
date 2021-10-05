@@ -41,6 +41,7 @@ triggerTabList.forEach(function (triggerEl) {
 })
 
 
+
 // SELECTION SERIES
 
 function selectSeries() {

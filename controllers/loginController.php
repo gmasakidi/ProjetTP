@@ -1,5 +1,11 @@
 <?php
 
+//Si je suis déjà connecté, alors je suis reidiré vers ma page profil
+if (isset($_SESSION['username'])) {
+    header('location:userProfile.php');
+    exit;
+}
+
 //Si mon formulaire a été envoyé
 if (count($_POST) > 0) {
     //J'initialise mon tableau qui stockera mes messages d'erreurs
@@ -57,8 +63,4 @@ if (count($_POST) > 0) {
     }
 }
 
-if (isset($_SESSION['username'])) {
-    header('location:userProfile.php');
-    exit;
-}
 
