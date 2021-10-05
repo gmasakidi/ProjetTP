@@ -100,7 +100,6 @@ CREATE TABLE f5E2_series(
 CREATE TABLE f5E2_seasons(
         id              Int Auto_increment NOT NULL ,
         seasonNumber    Int NOT NULL ,
-        numberOfEpisode Int NOT NULL ,
         idSeries  Int NOT NULL
 	,CONSTRAINT seasons_PK PRIMARY KEY (id)
 

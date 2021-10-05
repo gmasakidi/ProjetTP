@@ -120,7 +120,7 @@ class series extends database {
 
     public function getSeriesResults($search = '')
     {
-        $query = 'SELECT id, title, synopsis, photo, COUNT(id) AS count
+        $query = 'SELECT id, title, synopsis
         FROM f5e2_series
         ';
         if (!empty($search)) {

@@ -14,16 +14,13 @@ if (isset($_GET['seriesSearchAjax'])) {
     if (!empty($_GET['search'])) {
         //je stocke dans une variable search la valeur envoyé dans le champs de recherche en désactivant les potentiels chevrons
         $search = htmlspecialchars($_GET['search']);
-
-        if (!isset($formErrors['search'])) {
-            $seriesResult = $series->getSeriesResults(@$search);
-            if (count($seriesResult) > 0) {
-                echo json_encode($seriesResult);
-            } else {
-                $formErrors['search'] = 'ERREUR DB';
-                echo false;
-                echo json_encode($seriesResult);
-            }
+        $seriesResult = $series->getSeriesResults($search);
+        if (count($seriesResult) > 0) {
+            echo json_encode($seriesResult);
+        } else {
+            $formErrors['search'] = 'ERREUR DB';
+            // echo false;
+            // echo json_encode($seriesResult);
         }
     } else {
         $formErrors['search'] = EMPTY_SEARCH;

@@ -95,10 +95,15 @@ if(seriesSearchButton != null){
     xmlhttp.onreadystatechange = function () {
   
       if (this.readyState == 4 && this.status == 200) {
-        console.log(this.responseText);
         if (this.responseText != false) {
           document.querySelector('#searchResultNumber').classList.remove('d-none');
           document.querySelector('#searchResultContent').classList.remove('d-none');
+          let seriesResult = JSON.parse(this.responseText);
+          for (let series of seriesResult) {
+            console.log(series);
+            // document.getElementById('test').innerHTML += '<li>' + series.title + '</li>';
+            
+          }
         }
       }
     }
