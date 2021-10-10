@@ -8,25 +8,22 @@ require_once 'controllers/registerController.php';
 $title = 'Inscription';
 require_once 'includes/header.php';
 ?>
-<div class="container">
-    <div class="row">
-        <div class="col-12 text-center mt-5">
-
-            <?php if (isset($formErrors['db'])) { ?>
-                <div class="col-md-6 alert alert-danger d-flex justify-content-center" role="alert">
-                    <p class="text-center"><?= $formErrors['db'] ?></p>
+<div class="container pageHeight">
+    <div class="row pageHeight">
+        <?php if (isset($formErrors['db'])) { ?>
+            <div class="alert alert-danger mt-5" role="alert">
+                <p class="text-center"><?= $formErrors['db'] ?></p>
+            </div>
+        <?php } else { ?>
+            <?php if (isset($success)) { ?>
+                <div class="alert alert-success mt-5" role="alert">
+                    <p class="text-center"><?= $success ?></p>
                 </div>
-            <?php } else { ?>
-                <?php if (isset($success)) { ?>
-                    <div class="col-md-6 alert alert-success d-flex justify-content-center" role="alert">
-                        <p class="text-center"><?= $success ?></p>
-                    </div>
-                <?php } ?>
             <?php } ?>
-
+        <?php } ?>
+        <div class="col-12 text-center pageHeight d-flex align-items-center">
             <form class="form-signin" method="post" action="register.php">
-                <!-- <img class="mb-4" src="" alt="" > -->
-                <h1 class="h3 mb-3 fw-normal">Inscription</h1>
+                <h1 class="h3 mb-4 fw-normal">Inscription</h1>
 
                 <div class="form-floating">
                     <input type="text" class="form-control inputNoBottomRadius <?= !isset($formErrors['username']) ?: 'is-invalid' ?>" id="username" name="username" placeholder="Ex: Dracofeu" value="<?= @$_POST['username'] ?>" />

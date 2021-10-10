@@ -56,7 +56,7 @@ if (count($_POST) > 0) {
         $users->getUsersInformations();
         $_SESSION['id'] = $users->id;
         $_SESSION['username'] = $users->username;
-        $_SESSION['idUserRole'] = $users->idUserRole;
+        $_SESSION['idRoles'] = $users->idRoles;
 
         header('location: userProfile.php');
         exit;

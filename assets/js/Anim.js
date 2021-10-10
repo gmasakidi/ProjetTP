@@ -1,42 +1,50 @@
+//NAVBAR DROP DOWN
+
+let navbarDropdownMenuLink = document.querySelector('#navbarDropdownMenuLink');
+if(window.innerWidth < 992){
+  navbarDropdownMenuLink.innerHTML = '';
+  navbarDropdownMenuLink.innerHTML = 'Mon Compte';
+}
+
 // USER PROFILE SIDEBAR
 
-var triggerTabList = [].slice.call(document.querySelectorAll('#v-pills-home-tab'))
+var triggerTabList = [].slice.call(document.querySelectorAll('#v-pills-home-tab'));
 triggerTabList.forEach(function (triggerEl) {
-  var tabTrigger = new bootstrap.Tab(triggerEl)
+  var tabTrigger = new bootstrap.Tab(triggerEl);
 
   triggerEl.addEventListener('click', function (event) {
-    event.preventDefault()
-    tabTrigger.show()
+    event.preventDefault();
+    tabTrigger.show();
   })
 })
 
-var triggerTabList = [].slice.call(document.querySelectorAll('#v-pills-profile-tab'))
+var triggerTabList = [].slice.call(document.querySelectorAll('#v-pills-profile-tab'));
 triggerTabList.forEach(function (triggerEl) {
-  var tabTrigger = new bootstrap.Tab(triggerEl)
+  var tabTrigger = new bootstrap.Tab(triggerEl);
 
   triggerEl.addEventListener('click', function (event) {
-    event.preventDefault()
-    tabTrigger.show()
+    event.preventDefault();
+    tabTrigger.show();
   })
 })
 
-var triggerTabList = [].slice.call(document.querySelectorAll('v-pills-messages-tab'))
+var triggerTabList = [].slice.call(document.querySelectorAll('v-pills-messages-tab'));
 triggerTabList.forEach(function (triggerEl) {
-  var tabTrigger = new bootstrap.Tab(triggerEl)
+  var tabTrigger = new bootstrap.Tab(triggerEl);
 
   triggerEl.addEventListener('click', function (event) {
-    event.preventDefault()
-    tabTrigger.show()
+    event.preventDefault();
+    tabTrigger.show();
   })
 })
 
-var triggerTabList = [].slice.call(document.querySelectorAll('v-pills-settings-tab'))
+var triggerTabList = [].slice.call(document.querySelectorAll('v-pills-settings-tab'));
 triggerTabList.forEach(function (triggerEl) {
   var tabTrigger = new bootstrap.Tab(triggerEl)
 
   triggerEl.addEventListener('click', function (event) {
-    event.preventDefault()
-    tabTrigger.show()
+    event.preventDefault();
+    tabTrigger.show();
   })
 })
 

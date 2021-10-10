@@ -60,6 +60,8 @@ define('EMPTY_SEASONS', 'Le nombre de saisons est obligatoire.');
 
 define('EMPTY_PROGRESS', 'Vous devez séléctionner une saison. ');
 
+define('EMPTY_USER_ROLE', 'Vous devez séléctionner un rôle.');
+
 $regex = [
     'username' => '/^[a-zA-Z0-9]{3,50}$/',
     'id' => '/^[1-9][0-9]*$/',

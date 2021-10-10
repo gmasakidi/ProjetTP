@@ -43,8 +43,10 @@ class users extends database {
     }
 
     public function getUserslist() {
-        $query = 'SELECT id, username, mail, password
-        FROM f5e2_users';
+        $query = 'SELECT f5e2_users.id AS id, f5e2_users.username AS username, f5e2_users.mail AS mail, f5e2_roles.name AS role
+        FROM f5e2_users
+        INNER JOIN f5e2_roles
+        ON f5e2_users.idRoles = f5e2_roles.id';
         //On lance la méthode query qui contient notre requête qu'on lui donne en paramètre
         $queryExecute = $this->db->query($query);
         //On utilise le fetchAll ici car on veut prendre toutes les lignes de la table user
@@ -74,6 +76,16 @@ class users extends database {
         $queryExecute->bindValue(':username', $this->username, PDO::PARAM_STR);
         $queryExecute->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $queryExecute->bindValue(':password', $this->password, PDO::PARAM_STR);
+        $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
+        return $queryExecute->execute();
+    }
+
+    public function updateUserRole() {
+        $query = 'UPDATE f5e2_users 
+        SET idRoles = :idRoles
+        WHERE id=:id'; 
+        $queryExecute = $this->db->prepare($query);
+        $queryExecute->bindValue(':idRoles', $this->idRoles, PDO::PARAM_STR);
         $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $queryExecute->execute();
     }

@@ -39,8 +39,8 @@ require_once 'includes/header.php';
                 <?= $seriesDetails->synopsis ?>
             </p>
             <form action="seriesDetails.php?id=<?= $_GET['id'] ?>" method="post">
-                <div class="form-floating mb-3">
-                    <select class="form-select" id="seasonSelect" name="seasonSelect" aria-label="Floating label select example">
+                <div class="form-floating">
+                    <select class="form-select form-group <?= !isset($formErrors['seasonSelect']) ?: 'is-invalid' ?>" id="seasonSelect" name="seasonSelect" aria-label="Floating label select example">
                         <option selected disabled>Choisir la saison</option>
                         <?php foreach($seasonsBySeries as $seasons){ ?>
                             <option value="<?= $seasons->id ?>">Saison <?= $seasons->seasonNumber ?></option>
@@ -49,7 +49,7 @@ require_once 'includes/header.php';
                     <label for="seasonSelect">A quelle saison vous êtes-vous arrêtés ?</label>
                     <small class="invalid-feedback"><?= @$formErrors['seasonSelect'] ?></small>
                 </div>
-                <button type="submit" id="selectSeasonButton" name="selectSeasonButton" class="btn btn-outline-success btn-lg">Enregistrer</button>
+                <button type="submit" id="selectSeasonButton" name="selectSeasonButton" class="btn btn-outline-success btn-lg mt-3">Enregistrer</button>
             </form>
         </div>
     </div>

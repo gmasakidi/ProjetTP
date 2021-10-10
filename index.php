@@ -19,7 +19,7 @@ require_once 'includes/header.php';
                         <div class="carousel-caption text-start">
                             <h1>Des centaines de séries disponibles</h1>
                             <p>Ne vous souciez plus de votre avancement, laissez nous faire !</p>
-                            <p><a class="btn btn-lg btn-primary" href="register.php">Inscrivez-vous maintenant</a></p>
+                            <p><a class="btn btn-lg btn-primary" href="register.php">Commencer !</a></p>
                         </div>
                     </div>
                 </div>
@@ -48,11 +48,11 @@ require_once 'includes/header.php';
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+                <span class="visually-hidden">Précédent</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+                <span class="visually-hidden">Suivant</span>
             </button>
         </div>
         <div class="container marketing">
@@ -63,7 +63,7 @@ require_once 'includes/header.php';
                     </div>
                     <h2>Séries</h2>
                     <p>Retrouvez vos séries favorites et suivez votre progression par saison.</p>
-                    <p><a class="btn btn-secondary" href="#">Voir détails &raquo;</a></p>
+                    <p><a class="btn btn-secondary" href="#secondFeature">Voir détails &raquo;</a></p>
                 </div>
                 <div class="col-12 col-sm-4 mt-4 mt-sm-0">
                     <div class=" display-3 mb-2 rounded-circle">
@@ -71,7 +71,7 @@ require_once 'includes/header.php';
                     </div>
                     <h2>Discussion</h2>
                     <p>Partagez vos avis les derniers épisodes que vous avez regardé.</p>
-                    <p><a class="btn btn-secondary" href="#">Voir détails &raquo;</a></p>
+                    <p><a class="btn btn-secondary" href="#thirdFeature">Voir détails &raquo;</a></p>
                 </div>
                 <div class="col-12 col-sm-4 mt-4 mt-sm-0">
                     <div class=" display-3 mb-2 rounded-circle">
@@ -79,13 +79,13 @@ require_once 'includes/header.php';
                     </div>
                     <h2>News</h2>
                     <p>Suivez l'actualité de vos programmes ainsi que les dernières nouveautés.</p>
-                    <p><a class="btn btn-secondary" href="#">Voir détails &raquo;</a></p>
+                    <p><a class="btn btn-secondary" href="#firstFeature">Voir détails &raquo;</a></p>
                 </div>
             </div>
             <!-- FEATURES SECTION START -->
             <hr class="feature-divider">
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-7" id="firstFeature">
                     <h2 class="feature-heading">Aussi simple que ça. <span class="text-muted">Voyez par vous
                             même.</span></h2>
                     <p class="lead">Regardez vos programmes et retrouvez les tous sur SeriesTrackr, nous nous chargons
@@ -97,7 +97,7 @@ require_once 'includes/header.php';
             </div>
             <hr class="feature-divider">
             <div class="row">
-                <div class="col-md-7 order-md-2">
+                <div class="col-md-7 order-md-2" id="secondFeature">
                     <h2 class="feature-heading">Votre expérience, notre force. <span class="text-muted">Vous serez impressionné.</span></h2>
                     <p class="lead">Sélectionnez les séries que vous connaissez ainsi que les saisons que vous avez regardé. Plus besoin mémoriser votre progression.</p>
                 </div>
@@ -107,7 +107,7 @@ require_once 'includes/header.php';
             </div>
             <hr class="feature-divider">
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-7" id="thirdFeature">
                     <h2 class="feature-heading">Et si on en discutait ? <span class="text-muted">Alors à vos claviers !</span></h2>
                     <p class="lead">SériesTrakr vous propose un véritable espace de discussion où vous pourrez partager vos impressions sur les séries que vous avez regardé.
                         Vous pourrez échanger opinions sur l'actualité de vos programmes préférés.

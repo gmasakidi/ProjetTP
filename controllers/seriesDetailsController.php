@@ -50,8 +50,7 @@ if(!empty($_POST['idRecipient'])) {
     // Ici le contenu de cet input correspond à l'id de l'article que l'ont avait transmis à cet input grace au "data-base-id du bouton supprimer
     $articlesComments->id = $_POST['idRecipient'];
     //On stocke dans une variable le retour de la méthode deleteSeries, qui sera ici un booléan
-    $deleteArticleComment = $articlesComments->deleteArticleComment();
+    // $deleteArticleComment = $articlesComments->deleteArticleComment();
 }
 
 $seriesDetails = $series->getSeriesDetails();
-var_dump($formErrors);

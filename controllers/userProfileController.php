@@ -68,7 +68,7 @@ if (isset($_GET['ajax'])) {
      */
     if (!isset($formErrors['password']) && !isset($formErrors['confirmPassword'])) {
         if ($_GET['password'] == $_GET['confirmPassword']) {
-            //password_hash est une fonction PHP qui permet de hacher le mote de passe
+            //password_hash est une fonction PHP qui permet de hacher le mot de passe
             $users->password = password_hash($_GET['password'], PASSWORD_DEFAULT);
         } else {
             $formErrors['password'] = $formErrors['confirmPassword'] = INVALID_PASSWORD;
@@ -86,7 +86,7 @@ if (isset($_GET['ajax'])) {
         }
     } else {
         $testTableau = ['hello', 'world'];
-        echo $formErrors;
+        echo json_encode($formErrors);
     }
 } else {
 

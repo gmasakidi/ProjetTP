@@ -14,42 +14,45 @@
 <!-- Si on se trouve sur la page index alors on ne fait rien, sinon on applique la classe signInBody -->
 
 <body <?= $_SERVER['PHP_SELF'] == 'ProjetTP/login.php' || 'ProjetTP/register.php' ?: 'class="signInBody"'; ?>>
-    <header>
-        <!--Début de la navbar-->
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">SeriesTrackr</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="index.php">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="newsFeedPage.php">Actualités</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="seriesPage.php">Séries</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Contact</a>
-                        </li>
-                        <?php if (isset($_SESSION['username']) && isset($_SESSION['id'])) { ?>
+    <!--Début de la navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.php">SeriesTracker</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="newsFeedPage.php">Actualités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="seriesPage.php">Séries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="newsFeedPage.php">Contact</a>
+                    </li>
+                    <?php if (isset($_SESSION['idRoles'])) {
+                        if ($_SESSION['idRoles'] == 1) { ?>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="adminPage.php">Admin control</a>
+                                <a class="nav-link" aria-current="page" href="adminPage.php">Dashboard</a>
                             </li>
-                        <?php } ?>
-                    </ul>
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                        <input type="search" class="form-control" placeholder="Ex : Glee" aria-label="Search">
-                    </form>
-                    <div>
-                        <a href="#" class="d-block text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <?php }
+                    } ?>
+                </ul>
+                <form class="d-flex me-lg-3">
+                    <input class="form-control me-2" type="search" placeholder="Ex : Glee" aria-label="Search">
+                    <button class="btn btn-outline-secondary" type="submit">Chercher</button>
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-circle"></i>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser1">
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                             <?php if (!isset($_SESSION['username']) && !isset($_SESSION['id'])) { ?>
                                 <li><a class="dropdown-item" href="login.php">Se connecter</a></li>
                                 <li><a class="dropdown-item" href="register.php">S'inscrire</a></li>
@@ -62,9 +65,9 @@
                                 <li><a class="dropdown-item" href="controllers/logoutController.php">Se déconnecter</a></li>
                             <?php } ?>
                         </ul>
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
     <!--Fin de la navbar-->

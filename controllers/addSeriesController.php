@@ -1,5 +1,6 @@
 <?php
-
+//J'instancie mes objets
+//Je met ceux là en dehors de ma grande boucle car j'ai besoin d'afficher certaines informations tirées de ces tables
 $status = new status();
 $statusList = $status->getStatusList();
 
@@ -11,7 +12,7 @@ $actorsList = $actors->getActorsList();
 
 if (count($_POST) > 0) {
 
-    //J'appelle mes classes, j'instancie es objets
+    //J'appelle mes classes, j'instancie mes objets
     $series = new series();
     $seriesHaveGenres = new seriesHaveGenres();
     $seriesHaveActors = new seriesHaveActors();
@@ -79,6 +80,7 @@ if (count($_POST) > 0) {
     }
 
     if(!empty($_POST['seasons'])) {
+        //Je stocke dans une variable seasonsNumber, la valeur correspondant à l'option choisie dans mon select
         $seasonsNumber = $_POST['seasons'];
     } else {
         $formErrors['seasons'] = EMPTY_SEASONS;
@@ -129,7 +131,7 @@ if (count($_POST) > 0) {
                 $seriesHaveActors->addActorsToSeries();
             }
 
-            //je fais une boucle allant de 1 jusqu'au nombre de saisons selectionné dans le select de ma vu
+            //je fais une boucle allant de 1 jusqu'au nombre de saisons selectionné dans le select de ma vue
             for($SeriesSeasons = 1; $SeriesSeasons <= $seasonsNumber; $SeriesSeasons++){
                 //Je stocke dans l'attribut seasonNumber de ma classe seasons, la value récupéré dans mon select
                 $seasons->seasonNumber = $SeriesSeasons;

@@ -13,12 +13,7 @@ require_once 'includes/header.php';
     <div class="row userPage">
         <div class="col-2 p-0 mt-5 userPage">
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light ms-0 profileSidebar">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32">
-                        <use xlink:href="#bootstrap" />
-                    </svg>
-                    <span class="fs-4">Mon compte</span>
-                </a>
+                <span class="fs-4 text-center">Mon compte</span>
                 <hr>
                 <div class="d-flex align-items-start d-flex justify-content-center">
                     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -29,21 +24,6 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 <hr>
-                <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle fs-2 me-2"></i>
-                        <strong>mdo</strong>
-                    </a>
-                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Se déconnecter</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
         <div class="col-10 d-flex justify-content-center mt-5">
@@ -63,7 +43,7 @@ require_once 'includes/header.php';
                     <h2 class="fs-3">Mes informations</h2>
                     <ul class="list-group list-group-flush mb-4">
                         <li class="list-group-item"><span class="fw-bold">Nom d'utilisateur :</span> <?= $usersProfile->username; ?></li>
-                        <li class="list-group-item"><span class="fw-bold">Adresse mail :</span><span id="userMail"> <?= $usersProfile->mail; ?></span></li>
+                        <li class="list-group-item"><span class="fw-bold">Adresse mail : </span><span id="userMail"> <?= $usersProfile->mail; ?></span></li>
                     </ul>
                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         Modifier
@@ -101,7 +81,7 @@ require_once 'includes/header.php';
                 </div>
                 <div class="tab-pane fade mt-5" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                     <h2 class="fs-3">Sécurité</h2>
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                    <button type="button" class="btn btn-warning mt-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
                         Changer de mot de passe
                     </button>
                     <!-- Modale pour modifier le mot de passe -->
@@ -168,7 +148,6 @@ require_once 'includes/header.php';
 </div>
 
 <?php
-
 require_once 'includes/footer.php';
 
 ?>
