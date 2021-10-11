@@ -85,15 +85,15 @@ require_once 'includes/header.php';
                         <div class="row">
                             <p class="fw-bold">Choisir les genres</p>
                             <?php foreach ($seriesGenresList as $seriesGenres) { ?>
-                                <div class="col-4">
+                                <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="<?= $seriesGenres->name ?>" name="seriesGenres[]" value="<?= $seriesGenres->id ?>">
                                         <label class="form-check-label" for="<?= $seriesGenres->name ?>"><?= $seriesGenres->name ?></label>
                                     </div>
                                 </div>
                             <?php } ?>
+                            <small class="invalid-feedback"><?= @$formErrors['seriesGenres'] ?></small>
                         </div>
-                        <small class="invalid-feedback"><?= @$formErrors['seriesGenres'] ?></small>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -101,15 +101,15 @@ require_once 'includes/header.php';
                         <div class="row">
                             <p class="fw-bold">Sélectionner les acteurs</p>
                             <?php foreach ($actorsList as $actors) { ?>
-                                <div class="col-4">
+                                <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="<?= $actors->name ?>" name="actors[]" value="<?= $actors->id ?>">
                                         <label class="form-check-label" for="<?= $actors->name ?>"><?= $actors->name ?></label>
                                     </div>
                                 </div>
                             <?php } ?>
+                            <small class="invalid-feedback"><?= @$formErrors['actors'] ?></small>
                         </div>
-                        <small class="invalid-feedback"><?= @$formErrors['actors'] ?></small>
                     </div>
                 </div>
                 <input type="submit" class="btn btn-primary" value="Envoyer" />

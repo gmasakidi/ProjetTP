@@ -1,4 +1,16 @@
 <?php
+
+//Si l'utilisateur n'est pas administrateur, alors il est redirigé vers l'index. S'il n'est pas connecté, il est également redirigé
+if(isset($_SESSION['idRoles'])){
+    if($_SESSION['idRoles'] != 1){
+        header('location:index.php');
+        exit;
+    }
+}else{
+    header('location:index.php');
+    exit;
+}
+
 // J'appelle mes classes articles et categories - j'instancie mon objet
 $articles = new articles();
 $categories = new categories();
@@ -49,7 +61,7 @@ if (count($_POST) > 0) {
 
         if (in_array($articlePhotoExtension, $authorizedExtensions)) {
             if (move_uploaded_file($_FILES['articlePhoto']['tmp_name'], 'assets/uploads/Articles/' . $_FILES['articlePhoto']['name'])) {
-                chmod('uploads/Articles/' . $_FILES['articlePhoto']['name'], 0644);
+                chmod('assets/uploads/Articles/' . $_FILES['articlePhoto']['name'], 0644);
                 $articles->photo = 'assets/uploads/Articles/' . $_FILES['articlePhoto']['name'];
             } else {
                 $formErrors['articlePhoto'] = 'Une erreur est survenue lors de l\'envoi.';

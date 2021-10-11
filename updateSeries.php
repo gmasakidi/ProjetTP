@@ -15,21 +15,6 @@ $title = 'Modifier la série';
 require_once 'includes/header.php';
 ?>
 <div class="container">
-    <?php if (isset($formErrors['db'])) { ?>
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-6 d-flex justify-content-center alert alert-danger" role="alert">
-                <p class="text-center"><?= $formErrors['db'] ?></p>
-            </div>
-        </div>
-    <?php } else { ?>
-        <?php if (isset($success)) { ?>
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-6 d-flex justify-content-center alert alert-success" role="alert">
-                    <p class="text-center"><?= $success ?></p>
-                </div>
-            </div>
-        <?php } ?>
-    <?php } ?>
     <div class="row mt-5">
         <div class="col-12 mt-4">
             <h1 class="text-center">Modifier la série</h1>
@@ -110,7 +95,7 @@ require_once 'includes/header.php';
                         <div class="row">
                             <p class="fw-bold">Choisir les genres</p>
                             <?php foreach ($seriesGenresList as $seriesGenres) { ?>
-                                <div class="col-4">
+                                <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="<?= $seriesGenres->name ?>" name="seriesGenres[]" value="<?= $seriesGenres->id ?>">
                                         <label class="form-check-label" for="<?= $seriesGenres->name ?>"><?= $seriesGenres->name ?></label>
@@ -131,7 +116,7 @@ require_once 'includes/header.php';
                         <div class="row">
                             <p class="fw-bold">Sélectionner les acteurs</p>
                             <?php foreach ($actorsList as $actors) { ?>
-                                <div class="col-4">
+                                <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="<?= $actors->name ?>" name="actors[]" value="<?= $actors->id ?>">
                                         <label class="form-check-label" for="<?= $actors->name ?>"><?= $actors->name ?></label>

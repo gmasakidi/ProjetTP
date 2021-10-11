@@ -21,7 +21,7 @@ require_once 'includes/header.php';
     <div class="row mt-6">
         <div class="col-12 col-sm-4 d-flex justify-content-center">
             <div class="card">
-                <img src="<?= $seriesDetails->photo ?>" class="card-img" alt="..." />
+                <img src="<?= $seriesDetails->photo ?>" class="card-img" alt="seriesPoster" />
             </div>
         </div>
         <div class="col-12 col-sm-8">

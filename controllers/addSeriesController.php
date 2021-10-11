@@ -1,4 +1,16 @@
 <?php
+
+//Si l'utilisateur n'est pas administrateur, alors il est redirigé vers l'index. S'il n'est pas connecté, il est également redirigé
+if(isset($_SESSION['idRoles'])){
+    if($_SESSION['idRoles'] != 1){
+        header('location:index.php');
+        exit;
+    }
+}else{
+    header('location:index.php');
+    exit;
+}
+
 //J'instancie mes objets
 //Je met ceux là en dehors de ma grande boucle car j'ai besoin d'afficher certaines informations tirées de ces tables
 $status = new status();

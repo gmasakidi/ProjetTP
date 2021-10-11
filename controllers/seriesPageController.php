@@ -47,5 +47,3 @@ if (isset($_GET['seriesSearchAjax'])) {
         }
     }
 }
-
-var_dump($seriesResult);

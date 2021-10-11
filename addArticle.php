@@ -17,7 +17,7 @@ require_once 'controllers/addArticleController.php';
             <form action="addArticle.php" method="post" enctype="multipart/form-data" class="w-50 mb-5">
                 <div class="mb-3">
                     <label for="articleTitle" class="form-label">Titre de l'article</label>
-                    <input type="text" placeholder="Ex: Narcos" name="articleTitle" class="form-control <?= !empty($formErrors['articleTitle']) ? 'is-invalid' : ''; ?>" id="articleTitle" value="<?= @$_POST['articleTitle']; ?>" />
+                    <input type="text" placeholder="Ex: Notre sélection du dimanche" name="articleTitle" class="form-control <?= !empty($formErrors['articleTitle']) ? 'is-invalid' : ''; ?>" id="articleTitle" value="<?= @$_POST['articleTitle']; ?>" />
                     <small class="invalid-feedback"><?= @$formErrors['articleTitle']; ?></small>
                 </div>
                 <div class="mb-3">
@@ -28,7 +28,7 @@ require_once 'controllers/addArticleController.php';
                 <div class="mb-3">
                     <div class="input-group mb-3 <?= !isset($formErrors['articlePhoto']) ?: 'has-danger' ?>">
                         <label for="articlePhoto" class="input-group-text">Photo article</label>
-                        <input type="file" name="articlePhoto" class="form-control <?= !empty($formErrors['articlePhoto']) ? 'is-invalid' : ''; ?>" id="articlePhoto">
+                        <input type="file" name="articlePhoto" class="form-control <?= !empty($formErrors['articlePhoto']) ? 'is-invalid' : ''; ?>" id="articlePhoto" />
                         <small class="invalid-feedback"><?= @$formErrors['articlePhoto']; ?></small>
                     </div>
                 </div>

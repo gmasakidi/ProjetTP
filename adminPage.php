@@ -2,7 +2,7 @@
 session_start();
 
 require_once 'controllers/adminPageController.php';
-$title = 'Control pannel';
+$title = 'Dashboard';
 require_once 'includes/header.php';
 ?>
 <div class="container">
