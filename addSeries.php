@@ -70,10 +70,10 @@ require_once 'includes/header.php';
                 </div>
                 <div class="mb-3">
                     <div class="form-group <?= !isset($formErrors['seasons']) ?: 'has-danger' ?>">
-                    <label for="seasons" class="form-label">Nombre de saisons</label>
+                        <label for="seasons" class="form-label">Nombre de saisons</label>
                         <select class="form-select <?= !isset($formErrors['seasons']) ?: 'is-invalid' ?>" id="seasons" name="seasons">
                             <option selected disabled>Sélectionner le nombre de saisons</option>
-                            <?php for($seasons = 1; $seasons <= 36; $seasons++) { ?>
+                            <?php for ($seasons = 1; $seasons <= 36; $seasons++) { ?>
                                 <option value="<?= $seasons ?>"><?= $seasons ?></option>
                             <?php } ?>
                         </select>
@@ -92,7 +92,9 @@ require_once 'includes/header.php';
                                     </div>
                                 </div>
                             <?php } ?>
-                            <small class="invalid-feedback"><?= @$formErrors['seriesGenres'] ?></small>
+                            <?php if (isset($formErrors['seriesGenres'])) { ?>
+                                <small class="text-danger"><?= @$formErrors['seriesGenres'] ?></small>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -108,7 +110,9 @@ require_once 'includes/header.php';
                                     </div>
                                 </div>
                             <?php } ?>
-                            <small class="invalid-feedback"><?= @$formErrors['actors'] ?></small>
+                            <?php if (isset($formErrors['actors'])) { ?>
+                                <small class="text-danger"><?= @$formErrors['actors'] ?></small>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

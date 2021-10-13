@@ -17,9 +17,9 @@ require_once 'includes/header.php';
 
                     <div class="container">
                         <div class="carousel-caption text-start">
-                            <h1>Des centaines de séries disponibles</h1>
-                            <p>Ne vous souciez plus de votre avancement, laissez nous faire !</p>
-                            <p><a class="btn btn-lg btn-primary" href="register.php">Commencer !</a></p>
+                            <h1 class="carouselText">Des centaines de séries disponibles</h1>
+                            <p class="carouselText">Ne vous souciez plus de votre avancement, laissez nous faire !</p>
+                            <p><a class="btn btn-lg btn-primary" href="register.php">Commencer</a></p>
                         </div>
                     </div>
                 </div>
@@ -28,8 +28,8 @@ require_once 'includes/header.php';
 
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1>Secrets de tournage</h1>
-                            <p>Les 10 plus gros secrets de la série "The Big Bang Theory"</p>
+                            <h1 class="carouselText">Secrets de tournage</h1>
+                            <p class="carouselText">Les 10 plus gros secrets de la série "The Big Bang Theory"</p>
                             <p><a class="btn btn-lg btn-primary" href="#">En savoir plus...</a></p>
                         </div>
                     </div>
@@ -39,8 +39,8 @@ require_once 'includes/header.php';
 
                     <div class="container">
                         <div class="carousel-caption text-end">
-                            <h1>La saison 3 approche</h1>
-                            <p>Découvrez la bande-annonce complètement dingue de la nouvelle saison !</p>
+                            <h1 class="carouselText">Saison 3 en approche</h1>
+                            <p class="carouselText">Découvrez la bande-annonce complètement dingue de la nouvelle saison !</p>
                             <p><a class="btn btn-lg btn-primary" href="#">En savoir plus...</a></p>
                         </div>
                     </div>

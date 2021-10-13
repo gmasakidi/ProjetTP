@@ -73,12 +73,12 @@ require_once 'includes/header.php';
         </div>
         <div class="col-12 mt-4 d-flex justify-content-center">
             <form action="updateSeries.php?id=<?= $_GET['id'] ?>" method="post" class="w-50 mb-5">
-            <div class="mb-3">
+                <div class="mb-3">
                     <div class="form-group <?= !isset($formErrors['seasons']) ?: 'has-danger' ?>">
-                    <label for="seasons" class="form-label">Nombre de saisons</label>
+                        <label for="seasons" class="form-label">Nombre de saisons</label>
                         <select class="form-select <?= !isset($formErrors['seasons']) ?: 'is-invalid' ?>" id="seasons" name="seasons">
                             <option selected disabled>Sélectionner le nombre de saisons</option>
-                            <?php for($seasons = 1; $seasons <= 36; $seasons++) { ?>
+                            <?php for ($seasons = 1; $seasons <= 36; $seasons++) { ?>
                                 <option value="<?= $seasons ?>"><?= $seasons ?></option>
                             <?php } ?>
                         </select>
@@ -102,8 +102,10 @@ require_once 'includes/header.php';
                                     </div>
                                 </div>
                             <?php } ?>
+                            <?php if (isset($formErrors['seriesGenres'])) { ?>
+                                <small class="text-danger"><?= @$formErrors['seriesGenres'] ?></small>
+                            <?php } ?>
                         </div>
-                        <small class="invalid-feedback"><?= @$formErrors['seriesGenres'] ?></small>
                     </div>
                 </div>
                 <input type="submit" name="seriesGenresButton" class="btn btn-primary" value="Envoyer" />
@@ -123,8 +125,10 @@ require_once 'includes/header.php';
                                     </div>
                                 </div>
                             <?php } ?>
+                            <?php if (isset($formErrors['actors'])) { ?>
+                                <small class="text-danger"><?= @$formErrors['actors'] ?></small>
+                            <?php } ?>
                         </div>
-                        <small class="invalid-feedback"><?= @$formErrors['actors'] ?></small>
                     </div>
                 </div>
                 <input type="submit" name="seriesActorsButton" class="btn btn-primary" value="Envoyer" />

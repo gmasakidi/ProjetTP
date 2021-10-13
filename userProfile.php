@@ -13,14 +13,15 @@ require_once 'includes/header.php';
     <div class="row userPage">
         <div class="col-2 p-0 mt-5 userPage">
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light ms-0 profileSidebar">
-                <span class="fs-4 text-center">Mon compte</span>
+                <span class="fs-4 text-center d-none d-md-block">Mon compte</span>
+                <span class=" fs-4 text-center d-block d-md-none"><i class="bi bi-person-circle"></i></span>
                 <hr>
                 <div class="d-flex align-items-start d-flex justify-content-center">
                     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="bi bi-speedometer2 me-2"></i>Tableau de bord</button>
-                        <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="bi bi-person-lines-fill me-2"></i>Profil</button>
-                        <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"><i class="bi bi-shield-check me-2"></i>Sécurité</button>
-                        <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"><i class="bi bi-gear me-2"></i>Paramètres</button>
+                        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="bi bi-speedometer2 me-2"></i><span class="sidebarItemText d-none d-md-block">Tableau de bord</span></button>
+                        <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="bi bi-person-lines-fill me-2"></i><span class="sidebarItemText d-none d-md-block">Profil</span></button>
+                        <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"><i class="bi bi-shield-check me-2"></i><span class="sidebarItemText d-none d-md-block">Sécurité</span></button>
+                        <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"><i class="bi bi-gear me-2"></i><span class="sidebarItemText d-none d-md-block">Paramètres</span></button>
                     </div>
                 </div>
                 <hr>
