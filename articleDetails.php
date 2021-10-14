@@ -24,7 +24,7 @@ require_once 'includes/header.php';
         </div>
         <div class="col-12 mt-5 mb-4 text-center">
             <p>
-                <?= $articleDetails->content ?>
+                <?= htmlspecialchars_decode($articleDetails->content) ?>
             </p>
         </div>
         <hr>

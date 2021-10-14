@@ -68,11 +68,15 @@ if (count($_POST) > 0) {
      */
 
     if ($_FILES['poster']['error'] == 0) {
+        //La fonction pathinfo renvoie un array contenant l'extension du fichier dans posterExtension
         $posterExtension = strtolower(pathinfo($_FILES['poster']['name'])['extension']);
         $authorizedExtensions = ['png', 'jpeg', 'jpg', 'gif'];
-
+        //On compare l'extension récupérée plus haut à un tableau d'extensions autorisées avec la fonction in_array
         if (in_array($posterExtension, $authorizedExtensions)) {
+            //Si tout est bon, on accepte le fichier en appelant la fonction move_uploaded_file
+            //Prend en paramètre le nom temporaire du fichier + le chemin du fichier définitif qui correspond au nom d'origine du fichier
             if (move_uploaded_file($_FILES['poster']['tmp_name'], 'assets/uploads/Series/' . $_FILES['poster']['name'])) {
+                //Lecture et écriture pour le propriétaire, lecture pour les autres
                 chmod('assets/uploads/Series/' . $_FILES['poster']['name'], 0644);
                 $series->photo = 'assets/uploads/Series/' . $_FILES['poster']['name'];
             } else {

@@ -57,9 +57,14 @@ if (count($_POST) > 0) {
         $_SESSION['id'] = $users->id;
         $_SESSION['username'] = $users->username;
         $_SESSION['idRoles'] = $users->idRoles;
-
-        header('location: userProfile.php');
-        exit;
+        $_SESSION['firstConnection'] = $users->firstConnection;
+        if($users->firstConnection == 0){
+            header('location: seriesSelect.php');
+            exit;
+        }else{
+            header('location: userProfile.php');
+            exit;
+        }
     }
 }
 

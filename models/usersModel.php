@@ -13,6 +13,7 @@ class users extends database {
     public $password = '';
     public $photo = '';
     public $idRoles = 0;
+    public $firstConnection = 0;
 
 
     /**
@@ -28,8 +29,8 @@ class users extends database {
 
     public function addUser() {
         //Ici les ":" indiquent que ce sont des marqueurs nominatifs, ces valeurs sont vides, on prépare l'entrée de future données,
-        $query = 'INSERT INTO f5e2_users (username, mail, password)
-        VALUES (:username, :mail, :password)';
+        $query = 'INSERT INTO f5e2_users (username, mail, password, firstConnection)
+        VALUES (:username, :mail, :password, 0)';
         //On utilise prepare lorsque l'on a des marqueurs nominatifs, mais elle n'execute pas la requete directement contrairement à query
         $queryExecute = $this->db->prepare($query);
         //Le bindvalue va attribuer les données aux marqueurs nominatifs
@@ -132,7 +133,7 @@ class users extends database {
 
     public function getUsersInformations()
     {
-        $query = 'SELECT id, idRoles
+        $query = 'SELECT id, idRoles, firstConnection
         FROM f5e2_users
         WHERE username = :username';
         $queryExecute = $this->db->prepare($query);
@@ -140,10 +141,22 @@ class users extends database {
         $queryExecute->execute();
         $queryResult = $queryExecute->fetch(PDO::FETCH_OBJ);
         $this->id = $queryResult->id;
+        $this->firstConnection = $queryResult->firstConnection;
         $this->idRoles = $queryResult->idRoles;
         return true;
     }
 
+    //Cette méthode me permet de mettre à jour la colonne firstConnection, qui indique que je me suis connecté plus d'une fois
+    public function updateFirstConnection(){
+        $query = 'UPDATE f5e2_users
+            SET firstConnection = 1
+            WHERE id = :id';
+            $queryExecute = $this->db->prepare($query);
+            $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);   
+            //On nous retourne ici un booléen     
+            return $queryExecute->execute();
+
+    }
     //La méthode checkIfUsernameExists permet de savoir si un nom d'utilisateur existe déjà dans la bdd
     public function checkIfUsernameExists()
     {
